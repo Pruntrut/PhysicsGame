@@ -24,6 +24,10 @@ public class HelloWorldGame implements Game {
     // And we need to keep references on our game objects
     private Entity body;
     
+    // Graphical representation of the body
+    private ImageGraphics graphicsCrate;
+    private ImageGraphics graphicsBow;
+    
 
     // This event is raised when game has just started
     @Override
@@ -32,7 +36,32 @@ public class HelloWorldGame implements Game {
         // Store context
         this.window = window;
         
-       // TO BE COMPLETED
+        // Create physics engine
+        world = new World();
+        world.setGravity(new Vector(0.0f, -9.81f));
+        
+        // Create new entity builder
+        EntityBuilder entityBuilder = world.createEntityBuilder();
+        // Ensure it remains fixed
+        entityBuilder.setFixed(true);
+        // Set initial position
+        entityBuilder.setPosition(new Vector(1.0f, 1.5f));
+        // Build body
+        body = entityBuilder.build();
+        
+        // Set graphical representation of body 
+        graphicsCrate = new ImageGraphics("stone.broken.4.png", 1, 1);
+        graphicsCrate.setAlpha(0.5f);
+        graphicsCrate.setDepth(0.0f);
+        graphicsCrate.setParent(body);
+        
+        // Set second graphical representation
+        graphicsBow = new ImageGraphics("bow.png", 1, 1);
+        graphicsBow.setAlpha(1.0f);
+        graphicsBow.setDepth(1.0f);
+        graphicsBow.setRelativeTransform(Transform.I.rotated((float)Math.PI, new Vector(0.5f, 0.5f)));
+        graphicsBow.setParent(body);
+        
         // Successfully initiated
         return true;
     }
@@ -40,9 +69,19 @@ public class HelloWorldGame implements Game {
     // This event is called at each frame
     @Override
     public void update(float deltaTime) {
-        
-      
-        // The actual rendering will be done now, by the program loop
+    	
+    	// Game logic here
+    	// Nothing here yet
+    	
+    	// Simulate physics
+    	world.update(deltaTime);
+    	
+    	// Change camera position
+    	window.setRelativeTransform(Transform.I.scaled(10.0f));
+    	// Render scene
+    	graphicsCrate.draw(window);
+    	graphicsBow.draw(window);
+    	
     }
 
     // This event is raised after game ends, to release additional resources

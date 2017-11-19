@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="lib" path="lib/jbox2d-library-2.2.1.1.jar"/>
 	<classpathentry kind="lib" path="/home/luca/git/PhysicsGame/lib/jbox2d-library-2.2.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
