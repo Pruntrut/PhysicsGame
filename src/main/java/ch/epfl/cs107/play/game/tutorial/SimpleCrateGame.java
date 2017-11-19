@@ -1,7 +1,5 @@
 package ch.epfl.cs107.play.game.tutorial;
 
-import java.util.List;
-
 import ch.epfl.cs107.play.game.Game;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.io.FileSystem;
