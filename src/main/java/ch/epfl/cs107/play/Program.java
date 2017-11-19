@@ -15,7 +15,7 @@ import ch.epfl.cs107.play.window.swing.SwingWindow;
 public class Program {
 
 	/** Maximal time step allowed for a single frame. */
-	public static final float MAX_DEcd LTA_TIME = 0.1f;
+	public static final float MAX_DELTA_TIME = 0.1f;
 
 	/**
 	 * Main entry point.
