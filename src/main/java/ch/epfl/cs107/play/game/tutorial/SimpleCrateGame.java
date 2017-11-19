@@ -23,6 +23,13 @@ public class SimpleCrateGame implements Game {
 	private ImageGraphics graphicsBlock;
 	private ImageGraphics graphicsCrate;
 	
+	// Properties of block and crate
+	private float polygonWidth = 1.0f;
+	private float polygonHeight = 1.0f;
+	
+	private Vector blockPosition = new Vector(1.0f, 1.5f);
+	private Vector cratePosition = new Vector(0.2f, 4.0f);
+	
 	// This event is raised when game has just started
 	@Override
 	public boolean begin(Window window, FileSystem fileSystem) {
@@ -34,24 +41,25 @@ public class SimpleCrateGame implements Game {
 		// Create fixed block
 		EntityBuilder entityBuilder = world.createEntityBuilder();
 		entityBuilder.setFixed(true);
-		entityBuilder.setPosition(new Vector(1.0f, 1.5f));
+		entityBuilder.setPosition(blockPosition);
 		block = entityBuilder.build();
 		
 		// Set block geometry
 		PartBuilder blockBuilder = block.createPartBuilder();
 		Polygon polygon = new Polygon(
 					new Vector(0.0f, 0.0f),
-					new Vector(0.0f, 1.0f),
-					new Vector(1.0f, 1.0f),
-					new Vector(1.0f, 0.0f)
+					new Vector(0.0f, polygonHeight),
+					new Vector(polygonWidth, polygonHeight),
+					new Vector(polygonWidth, 0.0f)
 				);
+		blockBuilder.setFriction(0.5f);
 		blockBuilder.setShape(polygon);
 		blockBuilder.build();
 		
 		// Create crate
 		entityBuilder = world.createEntityBuilder();
 		entityBuilder.setFixed(false);
-		entityBuilder.setPosition(new Vector(0.2f, 4.0f));
+		entityBuilder.setPosition(cratePosition);
 		crate = entityBuilder.build();
 		
 		// Set crate geometry (same as for block)
@@ -60,11 +68,11 @@ public class SimpleCrateGame implements Game {
 		crateBuilder.build();
 		
 		// Graphics for block
-		graphicsBlock = new ImageGraphics("stone.broken.4.png", 1, 1);
+		graphicsBlock = new ImageGraphics("stone.broken.4.png", polygonWidth, polygonHeight);
 		graphicsBlock.setParent(block);
 		
 		// Graphics for crate
-		graphicsCrate = new ImageGraphics("box.4.png", 1, 1);
+		graphicsCrate = new ImageGraphics("box.4.png", polygonWidth, polygonHeight);
 		graphicsCrate.setParent(crate);
 		
 		return true;
