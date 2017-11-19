@@ -1,8 +1,7 @@
 package ch.epfl.cs107.play;
 
 import ch.epfl.cs107.play.game.Game;
-import ch.epfl.cs107.play.game.tutorial.RopeGame;
-import ch.epfl.cs107.play.game.tutorial.ScaleGame;
+import ch.epfl.cs107.play.game.tutorial.ContactGame;
 import ch.epfl.cs107.play.io.DefaultFileSystem;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.io.FolderFileSystem;
@@ -16,7 +15,7 @@ import ch.epfl.cs107.play.window.swing.SwingWindow;
 public class Program {
 
 	/** Maximal time step allowed for a single frame. */
-	public static final float MAX_DELTA_TIME = 0.1f;
+	public static final float MAX_DEcd LTA_TIME = 0.1f;
 
 	/**
 	 * Main entry point.
@@ -32,7 +31,7 @@ public class Program {
 		try {
 
 			// Create a demo game
-			Game game = new ScaleGame();
+			Game game = new ContactGame();
 			if (game.begin(window, fileSystem)) {
 
 				// Use system clock to keep track of time progression
