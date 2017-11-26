@@ -5,6 +5,8 @@ import java.util.List;
 
 import ch.epfl.cs107.play.game.Game;
 import ch.epfl.cs107.play.io.FileSystem;
+import ch.epfl.cs107.play.math.Entity;
+import ch.epfl.cs107.play.math.EntityBuilder;
 import ch.epfl.cs107.play.math.Positionable;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
@@ -86,7 +88,6 @@ public abstract class ActorGame implements Game {
 		for (Actor actor : actors) {
 			actor.draw(window);
 		}
-		
 	}
 	
 	/**
@@ -121,6 +122,21 @@ public abstract class ActorGame implements Game {
 	public Canvas getCanvas() {
 		return window;
 	}
+	
+	/**
+	 * Creates an entity in world then returns it
+	 * @param fixed : determines if entity is fixed or not
+	 * @param position : the initial position of the entity
+	 * @return the built entity
+	 */
+	public Entity createEntity(boolean fixed, Vector position) {
+		EntityBuilder entityBuilder = world.createEntityBuilder();
+		entityBuilder.setFixed(fixed);
+		entityBuilder.setPosition(position);
+		return entityBuilder.build();
+	}
+	
+	
 	
 
 }
