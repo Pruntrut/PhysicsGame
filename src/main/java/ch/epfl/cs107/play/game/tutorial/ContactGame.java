@@ -55,11 +55,11 @@ public class ContactGame implements Game {
 		
 		// Set geometries
 		buildPartRectangle(block, friction, blockHeight, blockWidth);
-		buildPartCircle(ball, friction, ballRadius, new Vector(ballRadius, ballRadius));
+		buildPartCircle(ball, friction, ballRadius);
 		
 		// Make graphics
 		blockGraphics = new ImageGraphics(blockSprite, blockWidth, blockHeight);
-		Circle circle = new Circle(ballRadius, new Vector(ballRadius, ballRadius));
+		Circle circle = new Circle(ballRadius);
 		ballGraphics = new ShapeGraphics(circle, Color.BLUE, Color.BLUE, 0.1f, 1, 0);
 		blockGraphics.setParent(block);
 		ballGraphics.setParent(ball);
@@ -140,8 +140,8 @@ public class ContactGame implements Game {
 	 * @param radius : the radius of the circle
 	 * @param position : the position of the model
 	 */
-	private static void buildPartCircle(Entity entity, float friction, float radius, Vector position) {
-		Circle circle = new Circle(radius, position);
+	private static void buildPartCircle(Entity entity, float friction, float radius) {
+		Circle circle = new Circle(radius);
 		buildPart(entity, circle, friction);
 	}
 	

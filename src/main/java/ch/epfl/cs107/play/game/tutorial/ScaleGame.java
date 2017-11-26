@@ -65,14 +65,14 @@ public class ScaleGame implements Game {
 		// Set geometries
 		buildPartRectangle(block, friction, blockHeight, blockWidth);
 		buildPartRectangle(plank, friction, plankHeight, plankWidth);
-		buildPartCircle(ball, friction, ballRadius, new Vector(ballRadius, ballRadius));
+		buildPartCircle(ball, friction, ballRadius);
 		
 		
 		
 		// Make graphics
 		blockGraphics = new ImageGraphics(blockSprite, blockWidth, blockHeight);
 		plankGraphics = new ImageGraphics(plankSprite, plankWidth, plankHeight);
-		ballGraphics = new ImageGraphics(ballSprite, ballRadius*2, ballRadius*2);
+		ballGraphics = new ImageGraphics(ballSprite, ballRadius*2, ballRadius*2, new Vector(0.5f, 0.5f));
 		blockGraphics.setParent(block);
 		plankGraphics.setParent(plank);
 		ballGraphics.setParent(ball);
@@ -154,8 +154,8 @@ public class ScaleGame implements Game {
 	 * @param radius : the radius of the circle
 	 * @param position : the position of the model
 	 */
-	private static void buildPartCircle(Entity entity, float friction, float radius, Vector position) {
-		Circle circle = new Circle(radius, position);
+	private static void buildPartCircle(Entity entity, float friction, float radius) {
+		Circle circle = new Circle(radius);
 		buildPart(entity, circle, friction);
 	}
 	

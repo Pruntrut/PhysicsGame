@@ -35,7 +35,7 @@ public class RopeGame implements Game {
 	private float blockHeight = 1.0f;
 	
 	// Properties of ball
-	private Vector ballPosition = new Vector(0.2f, 4.0f);
+	private Vector ballPosition = new Vector(0.6f, 4.0f);
 	private Vector ballVelocity = new Vector(-5.0f, 0.0f);
 	private float ballRadius = 0.6f;
 	
@@ -74,7 +74,7 @@ public class RopeGame implements Game {
 		
 		// Set ball geometry
 		PartBuilder ballBuilder = ball.createPartBuilder();
-		Circle circle = new Circle(ballRadius, ballPosition);
+		Circle circle = new Circle(ballRadius);
 		ballBuilder.setShape(circle);
 		ballBuilder.build();
 		
@@ -94,7 +94,7 @@ public class RopeGame implements Game {
 		ropeConstraintBuilder.setFirstAnchor(new Vector(blockWidth/2, blockHeight/2));
 		ropeConstraintBuilder.setSecondEntity(ball);
 		ropeConstraintBuilder.setSecondAnchor(Vector.ZERO);
-		ropeConstraintBuilder.setMaxLength(3.0f);
+		ropeConstraintBuilder.setMaxLength(6.0f);
 		ropeConstraintBuilder.setInternalCollision(true);
 		ropeConstraintBuilder.build();
 		
