@@ -1,6 +1,5 @@
 package ch.epfl.cs107.play.game.actor;
 
-import ch.epfl.cs107.play.math.Attachable;
 import ch.epfl.cs107.play.math.Node;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;

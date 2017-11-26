@@ -16,7 +16,6 @@ import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Window;
-import sun.awt.X11.InfoWindow.Balloon;
 
 public class RopeGame implements Game {
 	

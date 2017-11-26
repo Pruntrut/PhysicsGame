@@ -1,10 +1,10 @@
 package ch.epfl.cs107.play.game.actor;
 
-import ch.epfl.cs107.play.math.Attachable;
+import java.awt.Color;
+
 import ch.epfl.cs107.play.math.Node;
 import ch.epfl.cs107.play.math.Shape;
 import ch.epfl.cs107.play.window.Canvas;
-import java.awt.Color;
 
 /**
  * Contains information to render a single shape, which can be attached to any positionable.
