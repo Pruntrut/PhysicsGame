@@ -67,6 +67,6 @@ public class Crate extends GameEntity implements Actor {
 
 	@Override
 	public void draw(Canvas canvas) {
-		crateGraphics.draw(getOwner().getCanvas());
+		crateGraphics.draw(canvas);
 	}
 }
