@@ -18,9 +18,9 @@ public class CrateGame extends ActorGame {
 		super.begin(window, fileSystem);
 		
 		// Add crates to actors list
-		for (Vector position : positions) {
-			addActor(new Crate(this, false, position, 1.0f));
-		}
+		for (Vector pos : positions) {
+			addActor(new Crate(this, false, pos, 1.0f));
+		}		
 		
 		return true;
 	}

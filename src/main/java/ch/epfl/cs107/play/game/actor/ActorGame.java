@@ -123,6 +123,10 @@ public abstract class ActorGame implements Game {
 		return window;
 	}
 	
+	public void setViewCandidate(Positionable viewCandidate) {
+		this.viewCandidate = viewCandidate;
+	}
+	
 	/**
 	 * Creates an entity in world then returns it
 	 * @param fixed : determines if entity is fixed or not
