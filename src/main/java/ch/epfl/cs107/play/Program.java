@@ -1,9 +1,7 @@
 package ch.epfl.cs107.play;
 
 import ch.epfl.cs107.play.game.Game;
-import ch.epfl.cs107.play.game.tutorial.ContactGame;
-import ch.epfl.cs107.play.game.tutorial.RopeGame;
-import ch.epfl.cs107.play.game.tutorial.ScaleGame;
+import ch.epfl.cs107.play.game.actor.crate.CrateGame;
 import ch.epfl.cs107.play.io.DefaultFileSystem;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.io.FolderFileSystem;
@@ -33,7 +31,7 @@ public class Program {
 		try {
 
 			// Create a demo game
-			Game game = new ScaleGame();
+			Game game = new CrateGame();
 			if (game.begin(window, fileSystem)) {
 
 				// Use system clock to keep track of time progression
