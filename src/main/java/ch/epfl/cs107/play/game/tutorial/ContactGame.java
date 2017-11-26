@@ -98,7 +98,7 @@ public class ContactGame implements Game {
 
 	@Override
 	public void end() {
-		// TODO Auto-generated method stub
+		// Does nothing at the moment
 
 	}
 	
