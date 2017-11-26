@@ -38,6 +38,7 @@ public abstract class ActorGame implements Game {
 	public boolean begin(Window window, FileSystem fileSystem) {
 		
 		this.window = window;
+		this.fileSystem = fileSystem;
 		
 		// Initialize world
 		world = new World();
