@@ -13,6 +13,7 @@ import ch.epfl.cs107.play.window.Canvas;
 public class Bike extends GameEntity implements Actor {
 
 	private static final float MAX_WHEEL_SPEED = 20.0f;
+	private static final float WHEEL_RADIUS = 0.5f;
 	private boolean lookingLeft = true;
 	
 	private Wheel leftWheel;
@@ -28,13 +29,23 @@ public class Bike extends GameEntity implements Actor {
 	public Bike(ActorGame game, boolean fixed) {
 		super(game, fixed);
 		
+		buildWheels(game, fixed, Vector.ZERO);
 		buildPart();
 	}
 
 	public Bike(ActorGame game, boolean fixed, Vector position) {
 		super(game, fixed, position);
 		
+		buildWheels(game, fixed, position);
 		buildPart();
+	}
+	
+	private void buildWheels(ActorGame game, boolean fixed, Vector position) {
+		leftWheel = new Wheel(game, fixed, position.add(new Vector(-1.0f, 0.0f)), WHEEL_RADIUS);
+		rightWheel = new Wheel(game, fixed, position.add(new Vector(1.0f, 0.0f)), WHEEL_RADIUS);
+		
+		leftWheel.attach(getEntity(), new Vector(-1.0f,  0.0f), new Vector(-0.5f, -1.0f));
+		rightWheel.attach(getEntity(), new Vector(1.0f,  0.0f), new Vector(0.5f, -1.0f));
 	}
 	
 	private void buildPart() {

@@ -10,6 +10,7 @@ import ch.epfl.cs107.play.math.EntityBuilder;
 import ch.epfl.cs107.play.math.Positionable;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
+import ch.epfl.cs107.play.math.WheelConstraintBuilder;
 import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
@@ -123,6 +124,10 @@ public abstract class ActorGame implements Game {
 		return window;
 	}
 	
+	/**
+	 * Sets the window focus to given positionable
+	 * @param viewCandidate, a Position 
+	 */
 	public void setViewCandidate(Positionable viewCandidate) {
 		this.viewCandidate = viewCandidate;
 	}
@@ -138,6 +143,10 @@ public abstract class ActorGame implements Game {
 		entityBuilder.setFixed(fixed);
 		entityBuilder.setPosition(position);
 		return entityBuilder.build();
+	}
+	
+	public WheelConstraintBuilder getWheelContraintBuilder() {
+		return world.createWheelConstraintBuilder();
 	}
 	
 	

@@ -82,7 +82,7 @@ public class RopeGame implements Game {
 		blockGraphics = new ImageGraphics("stone.broken.4.png", blockWidth, blockWidth);
 		blockGraphics.setParent(block);
 		
-		// Graphics for crate
+		// Graphics for ball
 		ballGraphics = new ShapeGraphics(circle, Color.BLUE, Color.RED, 0, ballRadius, 0);
 		ballGraphics.setParent(ball);
 		
