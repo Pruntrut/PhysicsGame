@@ -16,6 +16,7 @@ import ch.epfl.cs107.play.window.Canvas;
 public class Wheel extends GameEntity implements Actor {
 
 	private float radius;
+	private static final float FRICTION = 0.85f; 
 	
 	private WheelConstraint constraint;		// The constraint attaching the wheel to its vehicle
 	private Entity vehicle;					// The vehicle it is attached to 
@@ -43,6 +44,7 @@ public class Wheel extends GameEntity implements Actor {
 		PartBuilder partBuilder = getEntity().createPartBuilder();
 		Circle circle = new Circle(radius);
 		partBuilder.setShape(circle);
+		partBuilder.setFriction(FRICTION);
 		partBuilder.build();
 	}
 	

@@ -46,6 +46,8 @@ public class Bike extends GameEntity implements Actor {
 		
 		leftWheel.attach(getEntity(), new Vector(-1.0f,  0.0f), new Vector(-0.5f, -1.0f));
 		rightWheel.attach(getEntity(), new Vector(1.0f,  0.0f), new Vector(0.5f, -1.0f));
+		
+		leftWheel.power(MAX_WHEEL_SPEED);
 	}
 	
 	private void buildPart() {
@@ -67,7 +69,8 @@ public class Bike extends GameEntity implements Actor {
 
 	@Override
 	public void draw(Canvas canvas) {
-		
+		leftWheel.draw(canvas);
+		rightWheel.draw(canvas);
 	}
 
 }

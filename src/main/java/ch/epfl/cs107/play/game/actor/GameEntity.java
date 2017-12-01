@@ -17,6 +17,16 @@ public abstract class GameEntity {
 		this(game, fixed, Vector.ZERO);
 	}
 	
+	public GameEntity(ActorGame game, boolean fixed, float friction, Vector position) {
+		this.game = game;
+		entity = game.createEntity(fixed, position);
+		
+	}
+	
+	public GameEntity(ActorGame game, boolean fixed, float friction) {
+		this(game, fixed, friction, Vector.ZERO);
+	}
+	
 	public void destroy() {
 		entity.destroy();
 	}
