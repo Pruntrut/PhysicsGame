@@ -17,10 +17,10 @@ public class BikeGame extends ActorGame {
 		addActor(terrain);
 		
 		// Create bike
-		Bike bike = new Bike(this, false, new Vector(-1.5f, 0.0f));
+		Bike bike = new Bike(this, false, new Vector(-0.5f, 0.5f));
 		addActor(bike);
 		
-		
+		setViewCandidate(bike);
 		
 		return true;
 	}
