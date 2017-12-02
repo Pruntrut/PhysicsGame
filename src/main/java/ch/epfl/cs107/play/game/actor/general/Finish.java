@@ -67,6 +67,12 @@ public class Finish extends GameEntity implements Actor {
 		return hit;
 	}
 	
+	@Override
+	public void destroy() {
+		super.destroy();
+		hit = false;
+	}
+	
 	
 	@Override
 	public Transform getTransform() {

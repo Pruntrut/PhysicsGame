@@ -22,12 +22,18 @@ public class BikeGame extends ActorGame {
 	public boolean begin(Window window, FileSystem fileSystem) {
 		super.begin(window, fileSystem);
 		
+		initialize();
+		
+		return true;
+	}
+	
+	private void initialize() {
 		// Add terrain to list of actors
 		Terrain terrain = new Terrain(this, true, 0.85f);
 		addActor(terrain);
 		
 		// Create bike
-		bike = new Bike(this, false, new Vector(-0.5f, 0.5f));
+		bike = new Bike(this, false, new Vector(-0.5f, 0.75f));
 		addActor(bike);
 		
 		// Add finish line
@@ -43,21 +49,30 @@ public class BikeGame extends ActorGame {
 		setViewCandidate(bike);
 		// Set bike as main entity
 		setPayload(bike);
-		
-		return true;
 	}
 
 	@Override
 	public void update(float deltaTime) {
 		super.update(deltaTime);
 		
+		if (bike.isHit()) {
+			reset();
+		}
+		
 		if (finish.isHit()) {
 			message.setText("LEVEL COMPLETE");
+			removeActor(bike);
 		}
 		
 		message.draw(getCanvas());
 	}
 	
+	private void reset() {
+		removeActor(bike);
+		removeActor(finish);
+		
+		initialize();
+	}
 	
 	
 }

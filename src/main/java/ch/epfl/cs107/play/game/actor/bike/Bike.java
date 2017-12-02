@@ -144,8 +144,6 @@ public class Bike extends GameEntity implements Actor {
 	public void update(float deltaTime) {		
 		if (!hit) {
 			updateControls();
-		} else {
-			bodyGraphics[0].setFillColor(Color.RED);
 		}
 	}
 	
@@ -208,7 +206,19 @@ public class Bike extends GameEntity implements Actor {
 			bodyPart.draw(canvas);
 		}
 	}
+	
+	@Override
+	public void destroy() {
+		super.destroy();
+		
+		leftWheel.destroy();
+		rightWheel.destroy();
+	}
 
+	public boolean isHit() {
+		return hit;
+	}
+	
 	@Override
 	public Transform getTransform() {
 		return getEntity().getTransform();

@@ -20,6 +20,8 @@ public abstract class ActorGame implements Game {
 	
 	// List of actors in game
 	private List<Actor> actors = new ArrayList<>();
+	// Queue of actors to be removed from game
+	private List<Actor> removeQueue = new ArrayList<>();
 	
 	// Physical attributes (physics engine and its properties)
 	private World world;			
@@ -65,6 +67,9 @@ public abstract class ActorGame implements Game {
 	@Override
 	public void update(float deltaTime) {
 		
+		// Pre : update actor list (e.g remove actors)
+		updateActors();
+		
 		// 1. Physics simulation
 		world.update(deltaTime);
 		
@@ -103,12 +108,28 @@ public abstract class ActorGame implements Game {
 	}
 	
 	/**
-	 * Removes given actor from list of actors in game
+	 * Adds actor to remove queue, normally removed from list at next update()
 	 * @param actor
 	 * @return a boolean indicating if given actor was present and removed correctly
 	 */
-	public boolean removeActor(Actor actor) {
-		return actors.remove(actor);
+	public void removeActor(Actor actor) {
+		removeQueue.add(actor);
+	}
+	
+	/**
+	 * Updates list of actors by removing actors in removeQueue
+	 */
+	private void updateActors() {
+		
+		// Destroy each actor the remove them from list
+		for (Actor actor : removeQueue) {
+			actor.destroy();
+			actors.remove(actor);
+		}
+		
+		// Reset remove queue
+		removeQueue = new ArrayList<>();
+		
 	}
 	
 	/**
