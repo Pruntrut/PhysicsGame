@@ -38,4 +38,8 @@ public abstract class GameEntity {
 	protected ActorGame getOwner() {
 		return game;
 	}
+	
+	public boolean isSameEntity(Entity other) {
+		return entity.equals(other);
+	}
 }

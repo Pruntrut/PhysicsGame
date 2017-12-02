@@ -9,6 +9,8 @@ import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.game.actor.general.Wheel;
 import ch.epfl.cs107.play.math.Circle;
+import ch.epfl.cs107.play.math.Contact;
+import ch.epfl.cs107.play.math.ContactListener;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
 import ch.epfl.cs107.play.math.Polyline;
@@ -26,6 +28,8 @@ public class Bike extends GameEntity implements Actor {
 	private Wheel leftWheel;
 	private Wheel rightWheel;
 	
+	private boolean hit = false;
+	
 	private ShapeGraphics[] bodyGraphics;
 	
 	private Polygon hitbox = new Polygon(
@@ -40,6 +44,7 @@ public class Bike extends GameEntity implements Actor {
 		
 		buildWheels(game, fixed, Vector.ZERO);
 		buildPart();
+		setupContactListener();
 		
 		makeGraphics();
 	}
@@ -49,6 +54,7 @@ public class Bike extends GameEntity implements Actor {
 		
 		buildWheels(game, fixed, position);
 		buildPart();
+		setupContactListener();
 		
 		makeGraphics();
 	}
@@ -59,8 +65,6 @@ public class Bike extends GameEntity implements Actor {
 		
 		leftWheel.attach(getEntity(), new Vector(-1.0f,  0.0f), new Vector(-0.5f, -1.0f));
 		rightWheel.attach(getEntity(), new Vector(1.0f,  0.0f), new Vector(0.5f, -1.0f));
-		
-		//leftWheel.power(MAX_WHEEL_SPEED);
 	}
 	
 	private void buildPart() {
@@ -115,8 +119,37 @@ public class Bike extends GameEntity implements Actor {
 		}
 	}	
 	
+	private void setupContactListener() {
+		ContactListener listener = new ContactListener() {
+			@Override
+			public void beginContact(Contact contact) {
+				if (contact.getOther().isGhost())
+					return;
+				if (leftWheel.isSameEntity(contact.getOther().getEntity()) 
+					|| rightWheel.isSameEntity(contact.getOther().getEntity())) {
+					return;
+				}
+				
+				hit = true;
+			}
+			
+			@Override
+			public void endContact(Contact contact) {}
+		};
+		
+		getEntity().addContactListener(listener);
+	}
+	
 	@Override
-	public void update(float deltaTime) {
+	public void update(float deltaTime) {		
+		if (!hit) {
+			updateControls();
+		} else {
+			bodyGraphics[0].setFillColor(Color.RED);
+		}
+	}
+	
+	private void updateControls() {
 		Keyboard keyboard = getOwner().getKeyboard();
 		
 		// By default, release wheels
