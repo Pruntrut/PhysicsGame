@@ -1,6 +1,7 @@
 package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.TextGraphics;
@@ -55,11 +56,11 @@ public class BikeGame extends ActorGame {
 	public void update(float deltaTime) {
 		super.update(deltaTime);
 		
-		if (bike.isHit()) {
+		if (getKeyboard().get(KeyEvent.VK_R).isPressed()) {
 			reset();
-		}
-		
-		if (finish.isHit()) {
+		} else if (bike.isHit()) {
+			reset();
+		} else if (finish.isHit()) {
 			message.setText("LEVEL COMPLETE");
 			removeActor(bike);
 		}
