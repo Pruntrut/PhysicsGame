@@ -29,6 +29,9 @@ public abstract class ActorGame implements Game {
 	private Window window;
 	private FileSystem fileSystem;
 	
+	// Main character (payload)
+	private GameEntity payload;
+	
 	// Viewport properties
 	private Vector viewCenter;
 	private Vector viewTarget;
@@ -102,10 +105,25 @@ public abstract class ActorGame implements Game {
 	/**
 	 * Removes given actor from list of actors in game
 	 * @param actor
-	 * @return a boolean indicating if given actor was present and removed corretly
+	 * @return a boolean indicating if given actor was present and removed correctly
 	 */
 	public boolean removeActor(Actor actor) {
 		return actors.remove(actor);
+	}
+	
+	/**
+	 * @return the current main entity (payload)
+	 */
+	public GameEntity getPayload() {
+		return payload;
+	}
+	
+	/**
+	 * Sets the main entity to given parameter
+	 * @param an entity
+	 */
+	public void setPayload(GameEntity actor) {
+		payload = actor;
 	}
 	
 	/**

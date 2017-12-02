@@ -42,4 +42,6 @@ public abstract class GameEntity {
 	public boolean isSameEntity(Entity other) {
 		return entity.equals(other);
 	}
+	
+	
 }
