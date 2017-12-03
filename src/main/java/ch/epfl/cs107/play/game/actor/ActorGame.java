@@ -119,7 +119,7 @@ public abstract class ActorGame implements Game {
 	/**
 	 * Updates list of actors by removing actors in removeQueue
 	 */
-	private void updateActors() {
+	protected void updateActors() {
 		
 		// Destroy each actor the remove them from list
 		for (Actor actor : removeQueue) {

@@ -17,8 +17,8 @@ public class Terrain extends GameEntity implements Actor {
 	private Polyline terrainShape = new Polyline(
 			-1000.0f, -1000.0f,
 			-1000.0f, 0.0f,
-			0.0f, 0.0f,
-			3.0f, 1.0f,
+			2.0f, 0.0f,
+			4.0f, 1.0f,
 			8.0f, 1.0f,
 			15.0f, 3.0f,
 			16.0f, 3.0f,
