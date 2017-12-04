@@ -1,5 +1,6 @@
 package ch.epfl.cs107.play.game.actor.bike;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import java.util.List;
@@ -7,6 +8,8 @@ import java.util.List;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameWithLevels;
 import ch.epfl.cs107.play.game.actor.Level;
+import ch.epfl.cs107.play.game.actor.Message;
+import ch.epfl.cs107.play.game.actor.TextGraphics;
 import ch.epfl.cs107.play.game.actor.level.BasicBikeLevel;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.Vector;
@@ -22,11 +25,18 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 	private Level currentLevel;
 	private int currentLevelIndex = -1;
 	
+	// Message
+	private Message message;
+	
 	@Override
 	public boolean begin(Window window, FileSystem fileSystem) {
 		super.begin(window, fileSystem);
 		
+		// Initialize message
+		message = new Message("", 0.2f, Color.BLUE, Color.WHITE, 0.02f, true, false, new Vector(0.5f, 0.5f), 1.0f, 100.0f, getCanvas());
+		// Build levels
 		levels = createLevelList();
+		// Launch level
 		nextLevel();
 		
 		return true;
@@ -36,6 +46,13 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 	public void update(float deltaTime) {
 		super.update(deltaTime);
 		
+		if (!message.wasShown()) {
+			message.drawFade();
+			setFreeze(true);
+		} else {
+			setFreeze(false);
+		}
+		
 		if (currentLevel.isFinished()) {
 			nextLevel();
 		} else if (getKeyboard().get(KeyEvent.VK_R).isPressed()) {
@@ -43,6 +60,7 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 		} else if (bike.isHit()) {
 			resetLevel();
 		}
+		
 	}
 	
 	@Override
@@ -70,6 +88,8 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 		currentLevel.createAllActors();
 		addActor(currentLevel);
 		
+		// Prepare message to be drawn in update
+		message.prepareDraw("Level " + (currentLevelIndex + 1), 2000);
 	}
 
 	@Override
