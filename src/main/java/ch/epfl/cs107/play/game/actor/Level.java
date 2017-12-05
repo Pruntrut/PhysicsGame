@@ -58,9 +58,7 @@ public abstract class Level extends Node implements Actor {
 	 * Return true if level has finished
 	 * @return a boolean
 	 */
-	public boolean isFinished() {
-		return false;
-	}
+	public abstract boolean isFinished();
 	
 	/**
 	 * Return this level's owner (the ActorGame in which it takes place)

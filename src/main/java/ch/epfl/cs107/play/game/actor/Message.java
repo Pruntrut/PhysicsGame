@@ -15,9 +15,9 @@ public class Message extends TextGraphics {
 	
 	private boolean shown = false;
 	
-	public Message(String text, float fontSize, Color fillColor, Color outlineColor, float thickness, boolean bold,
+	public Message(float fontSize, Color fillColor, Color outlineColor, float thickness, boolean bold,
 			boolean italics, Vector anchor, float alpha, float depth, Canvas canvas) {
-		super(text, fontSize, fillColor, outlineColor, thickness, bold, italics, anchor, alpha, depth);
+		super("", fontSize, fillColor, outlineColor, thickness, bold, italics, anchor, alpha, depth);
 				
 		this.canvas = canvas;
 		
@@ -26,9 +26,9 @@ public class Message extends TextGraphics {
 		initialTime = System.currentTimeMillis();
 	}
 
-	public Message(String text, float fontSize, Color fillColor, Color outlineColor, float thickness, boolean bold,
+	public Message(float fontSize, Color fillColor, Color outlineColor, float thickness, boolean bold,
 			boolean italics, Vector anchor, Canvas canvas) {
-		super(text, fontSize, fillColor, outlineColor, thickness, bold, italics, anchor);
+		super("", fontSize, fillColor, outlineColor, thickness, bold, italics, anchor);
 		
 		this.canvas = canvas;
 		
@@ -37,8 +37,8 @@ public class Message extends TextGraphics {
 		initialTime = System.currentTimeMillis();
 	}
 
-	public Message(String text, float fontSize, Color fillColor, Canvas canvas) {
-		super(text, fontSize, fillColor);
+	public Message(float fontSize, Color fillColor, Canvas canvas) {
+		super("", fontSize, fillColor);
 				
 		this.canvas = canvas;
 		
@@ -53,7 +53,7 @@ public class Message extends TextGraphics {
 	 * @param text : String to be shown
 	 * @param duration : duration of message (starts after method called)
 	 */
-	public void prepareDraw(String text, long duration) {
+	public void prepareDrawFade(String text, long duration) {
 		shown = false;
 		
 		this.duration = duration;
@@ -68,7 +68,7 @@ public class Message extends TextGraphics {
 	 * Here : duration = 1000ms
 	 * @param text : String to be shown
 	 */
-	public void prepareDraw(String text) {
+	public void prepareDrawFade(String text) {
 		this.duration = 1000;
 		this.setText(text);
 		
