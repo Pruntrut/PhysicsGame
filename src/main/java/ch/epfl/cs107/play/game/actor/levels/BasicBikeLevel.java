@@ -1,4 +1,4 @@
-package ch.epfl.cs107.play.game.actor.level;
+package ch.epfl.cs107.play.game.actor.levels;
 
 import java.awt.Color;
 

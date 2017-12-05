@@ -10,7 +10,7 @@ import ch.epfl.cs107.play.game.actor.GameWithLevels;
 import ch.epfl.cs107.play.game.actor.Level;
 import ch.epfl.cs107.play.game.actor.Message;
 import ch.epfl.cs107.play.game.actor.TextGraphics;
-import ch.epfl.cs107.play.game.actor.level.BasicBikeLevel;
+import ch.epfl.cs107.play.game.actor.levels.BasicBikeLevel;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Window;
