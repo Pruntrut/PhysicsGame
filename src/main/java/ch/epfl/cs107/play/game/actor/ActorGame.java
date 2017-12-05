@@ -26,6 +26,7 @@ public abstract class ActorGame implements Game {
 	// Physical attributes (physics engine and its properties)
 	private World world;			
 	private Vector gravity = new Vector(0.0f, -9.81f);
+	private boolean gameFrozen = false;
 	
 	// External properties
 	private Window window;
@@ -70,12 +71,15 @@ public abstract class ActorGame implements Game {
 		// Pre : update actor list (e.g remove actors)
 		updateActors();
 		
-		// 1. Physics simulation
-		world.update(deltaTime);
-		
-		// 2. Game logic (update every actor)
-		for (Actor actor : actors) {
-			actor.update(deltaTime);
+		// Check if game frozen
+		if (!gameFrozen) {
+			// 1. Physics simulation
+			world.update(deltaTime);
+			
+			// 2. Game logic (update every actor)
+			for (Actor actor : actors) {
+				actor.update(deltaTime);
+			}
 		}
 		
 		// 3. Calculate camera position
@@ -117,9 +121,16 @@ public abstract class ActorGame implements Game {
 	}
 	
 	/**
+	 * Freezes physics simulation in world
+	 */
+	protected void setFreeze(boolean frozen) {
+		gameFrozen = frozen;
+	}
+	
+	/**
 	 * Updates list of actors by removing actors in removeQueue
 	 */
-	private void updateActors() {
+	protected void updateActors() {
 		
 		// Destroy each actor the remove them from list
 		for (Actor actor : removeQueue) {

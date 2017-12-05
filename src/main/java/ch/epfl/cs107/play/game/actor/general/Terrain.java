@@ -14,11 +14,15 @@ import ch.epfl.cs107.play.window.Canvas;
 
 public class Terrain extends GameEntity implements Actor {
 	
-	private Polyline terrainShape = new Polyline(
+	private static final Color BROWN = new Color(0x805500);
+	private static final Color GREEN = new Color(0x00b300);
+	
+	private Polyline terrainShape;
+	private static final Polyline DEFAULT_TERRAIN_SHAPE = new Polyline(
 			-1000.0f, -1000.0f,
 			-1000.0f, 0.0f,
-			0.0f, 0.0f,
-			3.0f, 1.0f,
+			2.0f, 0.0f,
+			4.0f, 1.0f,
 			8.0f, 1.0f,
 			15.0f, 3.0f,
 			16.0f, 3.0f,
@@ -29,29 +33,33 @@ public class Terrain extends GameEntity implements Actor {
 			65.0f, 0.0f,
 			6500.0f, -1000.0f
 		);
-	
+		
 	private ShapeGraphics terrainGraphics;
 	
-	public Terrain(ActorGame game, boolean fixed, float friction, Vector position) {
-		super(game, fixed, position);
-		buildPart(friction);
-		makeGraphics();
-	}
-	
-	public Terrain(ActorGame game, boolean fixed, float friction) {
-		super(game, fixed);
-		buildPart(friction);
-		makeGraphics();
-	}
-	
 	public Terrain(ActorGame game, boolean fixed, float friction, Vector position, Polyline shape) {
-		this(game, fixed, friction, position);
+		super(game, fixed, friction, position);
+		
 		terrainShape = shape;
+		
+		buildPart(friction);
+		makeGraphics();
 	}
 	
 	public Terrain(ActorGame game, boolean fixed, float friction,Polyline shape) {
-		this(game, fixed, friction);
+		super(game, fixed, friction);
+		
 		terrainShape = shape;
+		
+		buildPart(friction);
+		makeGraphics();
+	}
+	
+	public Terrain(ActorGame game, boolean fixed, float friction, Vector position) {
+		this(game, fixed, friction, position,DEFAULT_TERRAIN_SHAPE);
+	}
+	
+	public Terrain(ActorGame game, boolean fixed, float friction) {
+		this(game, fixed, friction, DEFAULT_TERRAIN_SHAPE);
 	}
 
 	
@@ -63,7 +71,7 @@ public class Terrain extends GameEntity implements Actor {
 	}
 	
 	private void makeGraphics() {
-		terrainGraphics = new ShapeGraphics(terrainShape, Color.CYAN, Color.BLACK, 0.1f);
+		terrainGraphics = new ShapeGraphics(terrainShape, BROWN, GREEN, 0.1f);
 		terrainGraphics.setParent(getEntity());
 	}
 	
