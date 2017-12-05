@@ -14,6 +14,9 @@ import ch.epfl.cs107.play.window.Canvas;
 
 public class Terrain extends GameEntity implements Actor {
 	
+	private static final Color BROWN = new Color(0x805500);
+	private static final Color GREEN = new Color(0x00b300);
+	
 	private Polyline terrainShape = new Polyline(
 			-1000.0f, -1000.0f,
 			-1000.0f, 0.0f,
@@ -63,7 +66,7 @@ public class Terrain extends GameEntity implements Actor {
 	}
 	
 	private void makeGraphics() {
-		terrainGraphics = new ShapeGraphics(terrainShape, Color.CYAN, Color.BLACK, 0.1f);
+		terrainGraphics = new ShapeGraphics(terrainShape, BROWN, GREEN, 0.1f);
 		terrainGraphics.setParent(getEntity());
 	}
 	
