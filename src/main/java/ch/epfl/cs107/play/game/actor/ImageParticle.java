@@ -33,7 +33,7 @@ public class ImageParticle extends Particle {
 		super(position, velocity, acceleration, angularPosition, angularVelocity, angularAcceleration);
 		
 		if (name == null) {
-			throw new IllegalArgumentException("Name cannot be null");
+			throw new NullPointerException("Name cannot be null");
 		} 
 		
 		if (width <= 0.0f || height <= 0.0f) {
