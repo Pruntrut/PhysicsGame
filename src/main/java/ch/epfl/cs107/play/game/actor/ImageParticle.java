@@ -1,0 +1,76 @@
+package ch.epfl.cs107.play.game.actor;
+
+import ch.epfl.cs107.play.math.Transform;
+import ch.epfl.cs107.play.math.Vector;
+import ch.epfl.cs107.play.window.Canvas;
+import ch.epfl.cs107.play.window.Image;
+
+public class ImageParticle extends Particle {
+	
+	private String name;
+	private float width;
+	private float height;
+	private float alpha;
+	private float depth;
+
+	
+	/**
+	 * Creates a new ImageParticle
+	 * @param position : initial position
+	 * @param velocity : initial velocity
+	 * @param acceleration : initial acceleration
+	 * @param angularPosition : initial angular position
+	 * @param angularVelocity : initial angular velocity
+	 * @param angularAcceleration : initial angular acceleration
+	 * @param name : image name, non null
+	 * @param width : actual image width, before transformation
+     * @param height : actual image height, before transformation
+	 * @param alpha : transparency between 0 (invisible) and 1 (opaque)
+	 * @param depth : render priority, lower-values drawn first
+	 */
+	public ImageParticle(Vector position, Vector velocity, Vector acceleration, float angularPosition, float angularVelocity,
+			float angularAcceleration, String name, float width, float height, float alpha, float depth) {
+		super(position, velocity, acceleration, angularPosition, angularVelocity, angularAcceleration);
+		
+		if (name == null) {
+			throw new IllegalArgumentException("Name cannot be null");
+		} 
+		
+		if (width <= 0.0f || height <= 0.0f) {
+			throw new IllegalArgumentException("Width and Height must be positive");
+		}
+		
+		if (alpha < 0.0f || alpha > 1.0f) {
+			throw new IllegalArgumentException("Alpha must be between 0 and 1");
+		}
+		
+		this.name = name;
+		this.width = width;
+		this.height = height;
+		this.alpha = alpha;
+		this.depth = depth;
+	}
+	
+	public ImageParticle(ImageParticle other) {
+		super(other);
+		
+		this.name = other.name;
+		this.width = other.width;
+		this.height = other.height;
+		this.alpha = other.alpha;
+		this.depth = other.depth;
+	}
+	
+	@Override
+	public void draw(Canvas canvas) {
+		Image image = canvas.getImage(name);
+		Transform transform = Transform.I.translated(getPosition()).scaled(width, height).transformed(getTransform());
+		canvas.drawImage(image, transform, alpha, depth);
+	}
+
+	@Override
+	public ImageParticle copy() {
+		return new ImageParticle(this);
+	}
+
+}
