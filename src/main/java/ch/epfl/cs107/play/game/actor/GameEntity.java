@@ -8,6 +8,10 @@ public abstract class GameEntity {
 	private ActorGame game;
 	
 	public GameEntity(ActorGame game, boolean fixed, Vector position) {
+		if (game == null) {
+			throw new NullPointerException("ActorGame cannot be null");
+		}
+		
 		this.game = game;
 		entity = game.createEntity(fixed, position);
 		
@@ -18,6 +22,15 @@ public abstract class GameEntity {
 	}
 	
 	public GameEntity(ActorGame game, boolean fixed, float friction, Vector position) {
+		if (game == null) {
+			throw new NullPointerException("ActorGame cannot be null");
+		}
+		
+		if (friction < 0.0f) {
+			throw new IllegalArgumentException("Friction coefficient must be positive");
+		}
+		
+		
 		this.game = game;
 		entity = game.createEntity(fixed, position);
 		

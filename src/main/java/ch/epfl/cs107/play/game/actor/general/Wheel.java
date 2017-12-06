@@ -26,6 +26,11 @@ public class Wheel extends GameEntity implements Actor {
 	
 	public Wheel(ActorGame game, boolean fixed, Vector position, float radius) {
 		super(game, fixed, position);
+		
+		if (radius <= 0.0f) {
+			throw new IllegalArgumentException("Radius must be positive");
+		}
+		
 		this.radius = radius;
 		
 		buildPart();
@@ -34,6 +39,11 @@ public class Wheel extends GameEntity implements Actor {
 
 	public Wheel(ActorGame game, boolean fixed, float radius) {
 		super(game, fixed);
+		
+		if (radius <= 0.0f) {
+			throw new IllegalArgumentException("Radius must be positive");
+		}
+		
 		this.radius = radius;
 		
 		buildPart();

@@ -39,14 +39,22 @@ public class Terrain extends GameEntity implements Actor {
 	public Terrain(ActorGame game, boolean fixed, float friction, Vector position, Polyline shape) {
 		super(game, fixed, friction, position);
 		
+		if (shape == null) {
+			throw new NullPointerException("Shape cannot be null");
+		}
+		
 		terrainShape = shape;
 		
 		buildPart(friction);
 		makeGraphics();
 	}
 	
-	public Terrain(ActorGame game, boolean fixed, float friction,Polyline shape) {
+	public Terrain(ActorGame game, boolean fixed, float friction, Polyline shape) {
 		super(game, fixed, friction);
+		
+		if (shape == null) {
+			throw new NullPointerException("Shape cannot be null");
+		}
 		
 		terrainShape = shape;
 		

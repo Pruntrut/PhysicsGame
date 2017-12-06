@@ -18,6 +18,11 @@ public class Crate extends GameEntity implements Actor {
 
 	public Crate(ActorGame game, boolean fixed, Vector position, float length) {
 		super(game, fixed, position);
+		
+		if (length <= 0.0f) {
+			throw new IllegalArgumentException("Length must be positive");
+		}
+		
 		this.length = length;
 		
 		buildPart();

@@ -13,6 +13,11 @@ public abstract class Level extends Node implements Actor {
 	private List<Actor> actors;
 		
 	public Level(ActorGame owner) {
+		
+		if (owner == null) {
+			throw new NullPointerException("Owner cannot be null");
+		}
+		
 		this.owner = owner;
 		actors = new ArrayList<>();
 	}

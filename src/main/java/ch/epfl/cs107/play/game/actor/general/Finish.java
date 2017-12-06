@@ -25,6 +25,10 @@ public class Finish extends GameEntity implements Actor {
 	public Finish(ActorGame game, boolean fixed, Vector position, float radius) {
 		super(game, fixed, position);
 	
+		if (radius <= 0.0f) {
+			throw new IllegalArgumentException("Radius must be positive");
+		}
+		
 		hitboxRadius = radius;
 		
 		// Build part
