@@ -15,6 +15,18 @@ public abstract class Particle implements Graphics, Positionable {
 	private float angularVelocity;
 	private float angularAcceleration;
 
+	
+	
+	public Particle(Vector position, Vector velocity, Vector acceleration, float angularPosition, float angularVelocity,
+			float angularAcceleration) {
+		this.position = position;
+		this.velocity = velocity;
+		this.acceleration = acceleration;
+		this.angularPosition = angularPosition;
+		this.angularVelocity = angularVelocity;
+		this.angularAcceleration = angularAcceleration;
+	}
+
 	@Override
 	public abstract void draw(Canvas canvas);
 	
