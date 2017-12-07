@@ -38,12 +38,14 @@ public class VictoryBikeLevel extends Level {
 		
 		// Add victory message
 		message = new Message(0.2f, Color.GREEN, Color.WHITE, 0.02f, true, false, 
-				new Vector(0.5f, 0.5f), 1.0f, 100.0f, getOwner().getCanvas()); 
+				new Vector(0.5f, 2.0f), 1.0f, 100.0f, getOwner().getCanvas()); 
 		message.setText("VICTORY!");
 		
 		// Add emitters
-		VictoryEmitter emitter = new VictoryEmitter(new Vector(-4.0f, -1.0f), Color.BLUE);
-		addActor(emitter);
+		VictoryEmitter leftEmitter = new VictoryEmitter(new Vector(-4.0f, -1.0f), Color.BLUE);
+		addActor(leftEmitter);
+		VictoryEmitter rightEmitter = new VictoryEmitter(new Vector(4.0f, -1.0f), Color.GREEN);
+		addActor(rightEmitter);
 	}
 
 	@Override

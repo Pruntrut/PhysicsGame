@@ -25,6 +25,8 @@ public class Bike extends GameEntity implements Actor {
 	private static final float WHEEL_RADIUS = 0.5f;
 	private boolean lookingLeft = false;
 	
+	private boolean frozen = false;
+	
 	private Wheel leftWheel;
 	private Wheel rightWheel;
 	
@@ -142,12 +144,13 @@ public class Bike extends GameEntity implements Actor {
 	
 	@Override
 	public void update(float deltaTime) {		
-		if (!hit) {
+		if (!hit && !frozen) {
 			updateControls();
 		}
 	}
 	
 	private void updateControls() {
+		
 		Keyboard keyboard = getOwner().getKeyboard();
 		
 		// By default, release wheels
@@ -215,6 +218,14 @@ public class Bike extends GameEntity implements Actor {
 		rightWheel.destroy();
 	}
 
+	/**
+	 * If true freezes bike in place until set to false
+	 * @param frozen
+	 */
+	public void setFreeze(boolean frozen) {
+		this.frozen = frozen;
+	}
+	
 	public boolean isHit() {
 		return hit;
 	}

@@ -9,7 +9,6 @@ import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameWithLevels;
 import ch.epfl.cs107.play.game.actor.Level;
 import ch.epfl.cs107.play.game.actor.Message;
-import ch.epfl.cs107.play.game.actor.TextGraphics;
 import ch.epfl.cs107.play.game.actor.levels.BasicBikeLevel;
 import ch.epfl.cs107.play.game.actor.levels.CrateBikeLevel;
 import ch.epfl.cs107.play.game.actor.levels.VictoryBikeLevel;
@@ -29,6 +28,7 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 	
 	// Message
 	private Message message;
+	private static final float INITIAL_MESSAGE_DURATION = 2.0f;
 	private boolean initialMessageShown = false;
 	
 	@Override
@@ -46,31 +46,6 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 		return true;
 	}
 	
-	@Override
-	public void update(float deltaTime) {
-		super.update(deltaTime);
-		
-		// If the message was not shown and is being shown
-		if (!initialMessageShown && !message.wasShown()) {
-			message.drawFade();
-			setFreeze(true);
-		// If message has finished displaying but game still frozen, unfreeze game
-		// This makes sure game that was frozen in nextLevel() is not unfrozen
-		} else if (!initialMessageShown && message.wasShown()) {
-			initialMessageShown = true;
-			setFreeze(false);
-		}
-		
-		if (currentLevel.isFinished()) {
-			nextLevel();
-		} else if (getKeyboard().get(KeyEvent.VK_R).isPressed()) {
-			resetLevel();
-		} else if (bike.isHit()) {
-			resetLevel();
-		}
-		
-	}
-
 	@Override
 	public void nextLevel() {
 		// Remove previous level
@@ -98,16 +73,43 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 		
 		// Check if final level
 		if (currentLevelIndex == levels.size() - 1) {
-			// Freeze game
-			setFreeze(true);
+			// Freeze bike
+			bike.setFreeze(true);
 		} else {
 			// Draw next level message as normal
-			message.prepareDrawFade("Level " + (currentLevelIndex + 1), 2000);
+			message.prepareDrawFade("Level " + (currentLevelIndex + 1), INITIAL_MESSAGE_DURATION);
 			initialMessageShown = false;
 		}
 		
 		
 	}
+	
+	@Override
+	public void update(float deltaTime) {
+		super.update(deltaTime);
+		
+		// If the message was not shown and is being shown
+		if (!initialMessageShown && !message.wasShown()) {
+			message.drawFade(deltaTime);
+			setFreeze(true);
+		// If message has finished displaying but game still frozen, unfreeze game
+		// This makes sure game that was frozen in nextLevel() is not unfrozen
+		} else if (!initialMessageShown && message.wasShown()) {
+			initialMessageShown = true;
+			setFreeze(false);
+		}
+		
+		if (currentLevel.isFinished()) {
+			nextLevel();
+		} else if (getKeyboard().get(KeyEvent.VK_R).isPressed()) {
+			resetLevel();
+		} else if (bike.isHit()) {
+			resetLevel();
+		}
+		
+	}
+
+	
 
 	/**
 	 * Resets the level to its original state when nextLevel was called

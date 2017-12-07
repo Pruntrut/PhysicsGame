@@ -19,7 +19,7 @@ public class VictoryEmitter extends Emitter {
 			0.0f, WIDTH
 	);
 	
-	private static final int PARTICLE_LIMIT = 20;
+	private static final int PARTICLE_LIMIT = 35;
 	
 	/**
 	 * Creates a new instance of VictoryEmitter
@@ -53,7 +53,7 @@ public class VictoryEmitter extends Emitter {
 		
 		path += ".png";
 		
-		ImageGraphics graphics = new ImageGraphics(path, WIDTH, HEIGHT, Vector.ZERO, 1.0f, 100.0f);
+		ImageGraphics graphics = new ImageGraphics(path, WIDTH, HEIGHT, new Vector(0.5f, 0.0f), 1.0f, 100.0f);
 		graphics.setParent(this);
 		
 		return graphics;
@@ -69,16 +69,18 @@ public class VictoryEmitter extends Emitter {
 			// Angle between -pi/4 and pi/4
 			float velocityAngle = (float)(-Math.PI/6 + (Math.random() * (Math.PI/3)));
 			
-			Vector position = getTransform().getOrigin().add(new Vector(WIDTH/2, 0.0f));
+			Vector position = getTransform().getOrigin();
 			Vector velocity = new Vector(0.0f, 6.0f).rotated(velocityAngle);
 			Vector acceleration = new Vector(0.0f, -3.0f);
 			
-			float angularVelocity = 1.0f;
+			// Angular velocity between 1 and -1
+			float angularVelocity = -1.0f + (float)(Math.random() * 2.0);
 			
-			VictoryParticle particle = new VictoryParticle(position, velocity, acceleration, 0.0f, angularVelocity, 0.0f);
+			// Duration between 0.5 and 2.0s
+			float duration = 0.5f + (float)(Math.random() * 3);
+			
+			VictoryParticle particle = new VictoryParticle(position, velocity, acceleration, 0.0f, angularVelocity, 0.0f, duration);
 			addParticle(particle);
-			
-			// TODO : make particles disappear
 		}
 	}
 }

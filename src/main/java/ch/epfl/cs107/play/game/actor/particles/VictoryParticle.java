@@ -14,7 +14,7 @@ public class VictoryParticle extends Particle {
 	private ImageGraphics graphics;
 	
 	/**
-	 * Creates a new VictoryParticle (star shaped) with a random color
+	 * Creates a new VictoryParticle (star shaped) with a random color and non permanent
 	 * @param position : initial position
 	 * @param velocity : initial velocity
 	 * @param acceleration : initial acceleration
@@ -23,9 +23,10 @@ public class VictoryParticle extends Particle {
 	 * @param angularAcceleration : initial angular acceleration
 	 */
 	public VictoryParticle(Vector position, Vector velocity, Vector acceleration, float angularPosition,
-			float angularVelocity, float angularAcceleration) {
-		super(position, velocity, acceleration, angularPosition, angularVelocity, angularAcceleration);
+			float angularVelocity, float angularAcceleration, float duration) {
+		super(position, velocity, acceleration, angularPosition, angularVelocity, angularAcceleration, false);
 		
+		setDuration(duration);
 		buildGraphics();
 	}
 
@@ -69,7 +70,17 @@ public class VictoryParticle extends Particle {
 
 	@Override
 	public void draw(Canvas canvas) {
-		graphics.draw(canvas);
+		if (!isExpired()) {
+			
+			// If time left is last 25%, start to fade out
+			if (getTimeLeft() < 0.25f * getDuration()) {
+				graphics.setAlpha(getTimeLeft() / (0.25f * getDuration())); 
+			} else {
+				graphics.setAlpha(1.0f);
+			}
+			
+			graphics.draw(canvas);
+		}
 	}
 
 	@Override

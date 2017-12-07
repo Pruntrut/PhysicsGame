@@ -10,9 +10,11 @@ import ch.epfl.cs107.play.window.Canvas;
 
 public abstract class Emitter implements Actor {
 
+	// Particles
 	private List<Particle> particles;
 	private int particleLimit;
 	
+	// Physical representation
 	private Vector position;
 	private Shape shape;
 	private Graphics graphics;
@@ -49,6 +51,18 @@ public abstract class Emitter implements Actor {
 	
 	@Override
 	public void update(float deltaTime) {
+		
+		// Remove expired particles
+		List<Particle> removeQueue = new ArrayList<>();
+		for (Particle particle : particles) {
+			if (particle.isExpired()) {
+				removeQueue.add(particle);
+			}
+		}
+		for (Particle particle : removeQueue) {
+			particles.remove(particle);
+		}
+		
 		// Make new particles
 		//createParticles(particleLimit - particles.size());
 		if (particles.size() < particleLimit) {
