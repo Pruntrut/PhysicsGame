@@ -1,5 +1,7 @@
 package ch.epfl.cs107.play.game.actor.particles;
 
+import java.util.Random;
+
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.game.actor.Particle;
 import ch.epfl.cs107.play.math.Vector;
@@ -7,6 +9,8 @@ import ch.epfl.cs107.play.window.Canvas;
 
 public class VictoryParticle extends Particle {
 
+	private static final float LENGTH = 0.3f;
+	
 	private ImageGraphics graphics;
 	
 	/**
@@ -39,8 +43,8 @@ public class VictoryParticle extends Particle {
 	private void buildGraphics() {
 		// Select random star sprite
 		String path = "star.";
-		
-		int index = (int) Math.floor(Math.random() / 4) * 4;
+		Random rand;
+		int index = (int)(Math.random() * 4);
 		switch (index) {
 			case 0:
 				path += "diamond";
@@ -58,7 +62,7 @@ public class VictoryParticle extends Particle {
 		path += ".png";
 		
 		// Build graphics
-		graphics = new ImageGraphics(path, 0.05f, 0.05f, Vector.ZERO, 1.0f, 100.0f);
+		graphics = new ImageGraphics(path, LENGTH, LENGTH, Vector.ZERO, 1.0f, 100.0f);
 		graphics.setParent(this);
 		
 	}

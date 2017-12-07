@@ -26,6 +26,7 @@ public abstract class Emitter implements Actor {
 	public Emitter(Shape shape, Vector position, int particleLimit) {
 		particles = new ArrayList<>();
 		this.shape = shape;
+		this.position = position;
 		this.particleLimit = particleLimit;
 	}
 	

@@ -19,7 +19,7 @@ public class VictoryEmitter extends Emitter {
 			0.0f, WIDTH
 	);
 	
-	private static final int PARTICLE_LIMIT = 100;
+	private static final int PARTICLE_LIMIT = 20;
 	
 	/**
 	 * Creates a new instance of VictoryEmitter
@@ -66,14 +66,19 @@ public class VictoryEmitter extends Emitter {
 	@Override
 	protected void createParticles(int number) {
 		for (int i = 0; i < number; i++) {
-			Vector position = getTransform().getOrigin();
-			Vector velocity = new Vector(0.0f, 10.0f);
+			// Angle between -pi/4 and pi/4
+			float velocityAngle = (float)(-Math.PI/6 + (Math.random() * (Math.PI/3)));
+			
+			Vector position = getTransform().getOrigin().add(new Vector(WIDTH/2, 0.0f));
+			Vector velocity = new Vector(0.0f, 6.0f).rotated(velocityAngle);
 			Vector acceleration = new Vector(0.0f, -3.0f);
 			
 			float angularVelocity = 1.0f;
 			
 			VictoryParticle particle = new VictoryParticle(position, velocity, acceleration, 0.0f, angularVelocity, 0.0f);
 			addParticle(particle);
+			
+			// TODO : make particles disappear
 		}
 	}
 }
