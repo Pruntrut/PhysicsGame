@@ -20,7 +20,7 @@ public class VictoryBikeLevel extends Level {
 	}
 
 	@Override
-	public void createAllActors() {
+	protected void createActors() {
 		
 		// Add terrain
 		Polyline shape = new Polyline(
@@ -41,7 +41,7 @@ public class VictoryBikeLevel extends Level {
 				new Vector(0.5f, 2.0f), 1.0f, 100.0f, getOwner().getCanvas()); 
 		message.setText("VICTORY!");
 		
-		// Add emitters
+		// Add Emitters
 		VictoryEmitter leftEmitter = new VictoryEmitter(new Vector(-4.0f, -1.0f), Color.BLUE);
 		addActor(leftEmitter);
 		VictoryEmitter rightEmitter = new VictoryEmitter(new Vector(4.0f, -1.0f), Color.GREEN);

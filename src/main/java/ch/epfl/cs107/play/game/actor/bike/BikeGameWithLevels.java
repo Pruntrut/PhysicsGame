@@ -64,7 +64,7 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 		}
 		currentLevel = levels.get(currentLevelIndex);
 		
-		buildBike();
+		buildBike(currentLevel.getBikeInitialPosition());
 		
 		// Initialize level
 		currentLevel.setParent(getCanvas());
@@ -117,18 +117,17 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 	@Override
 	public void resetLevel() {
 		removeActor(bike);
-		buildBike();
+		buildBike(currentLevel.getBikeInitialPosition());
 		
-		currentLevel.destroy();
-		currentLevel.createAllActors();
+		currentLevel.reset();
 	}
 	
 	/**
 	 * Builds the bike entity, sets it as payload, actor, etc...
 	 */
-	private void buildBike() {
+	private void buildBike(Vector position) {
 		// Build bike
-		bike = new Bike(this, false, new Vector(0.0f, 0.5f));
+		bike = new Bike(this, false, position.add(0.0f, 0.5f));
 		addActor(bike);
 		setViewCandidate(bike);
 		setPayload(bike);

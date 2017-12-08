@@ -5,11 +5,11 @@ import ch.epfl.cs107.play.math.ContactListener;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Shape;
+import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
+import ch.epfl.cs107.play.window.Canvas;
 
 public abstract class Trigger extends GameEntity implements Actor {
-	// Hitbox
-	private Shape hitboxShape;
 
 	// Contact
 	private ContactListener listener;
@@ -30,9 +30,8 @@ public abstract class Trigger extends GameEntity implements Actor {
 	 * @param hitboxShape : the shape of the trigger hitbox
 	 * @param permanent : whether the trigger has a certain timeout
 	 */
-	public Trigger(ActorGame game, boolean fixed, Vector position, Shape hitboxShape, boolean permanent) {
-		super(game, fixed, position);
-		this.hitboxShape = hitboxShape;
+	public Trigger(ActorGame game, Vector position, Shape hitboxShape, boolean permanent) {
+		super(game, true, position);
 		
 		// Build part 
 		PartBuilder partBuilder = getEntity().createPartBuilder();
@@ -63,8 +62,8 @@ public abstract class Trigger extends GameEntity implements Actor {
 	 * @param position
 	 * @param hitboxShape
 	 */
-	public Trigger(ActorGame game, boolean fixed, Vector position, Shape hitboxShape) {
-		this(game, fixed, position, hitboxShape, true);
+	public Trigger(ActorGame game, Vector position, Shape hitboxShape) {
+		this(game, position, hitboxShape, true);
 	}
 	
 	/**
@@ -112,7 +111,13 @@ public abstract class Trigger extends GameEntity implements Actor {
 	public void setInactive() {
 		setInactive(Float.POSITIVE_INFINITY);
 	}
-	
+
+	@Override
+	public void draw(Canvas canvas) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * @return if the trigger is currently inactive
 	 */
@@ -143,6 +148,7 @@ public abstract class Trigger extends GameEntity implements Actor {
 
 	@Override
 	public void update(float deltaTime) {
+		
 		if (!permanent && inactive) {
 			// Decrement time left on timeout
 			timeoutLeft -= deltaTime;
@@ -152,6 +158,21 @@ public abstract class Trigger extends GameEntity implements Actor {
 				reset();
 			}
 		}
+	}
+	
+	@Override
+	public Transform getTransform() {
+		return getEntity().getTransform();
+	}
+
+	@Override
+	public Vector getPosition() {
+		return getEntity().getPosition();
+	}
+
+	@Override
+	public Vector getVelocity() {
+		return getEntity().getVelocity();
 	}
 	
 	

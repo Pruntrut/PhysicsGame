@@ -17,7 +17,7 @@ public class CrateBikeLevel extends Level {
 	}
 
 	@Override
-	public void createAllActors() {
+	protected void createActors() {
 		
 		// Make the launch ramp
 		Polyline rampShape = new Polyline(

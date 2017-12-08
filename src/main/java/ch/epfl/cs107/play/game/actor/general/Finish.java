@@ -13,8 +13,15 @@ public class Finish extends Trigger {
 	private ImageGraphics flagGraphics;
 	private float radius;
 
-	public Finish(ActorGame game, boolean fixed, Vector position, float radius) {
-		super(game, fixed, position, new Circle(radius));
+	/**
+	 * Creates a new Finish
+	 * @param game
+	 * @param fixed
+	 * @param position
+	 * @param radius : radius of spherical hitbox
+	 */
+	public Finish(ActorGame game, Vector position, float radius) {
+		super(game, position, new Circle(radius));
 		
 		this.radius = radius;
 		
@@ -24,8 +31,14 @@ public class Finish extends Trigger {
 		
 	}
 	
+	/**
+	 * Creates a new Finish with radius 1.0f
+	 * @param game
+	 * @param fixed
+	 * @param position
+	 */
 	public Finish(ActorGame game, boolean fixed, Vector position) {
-		this(game, fixed, position, 1.0f);
+		this(game, position, 1.0f);
 	}
 
 	/**
@@ -34,22 +47,6 @@ public class Finish extends Trigger {
 	@Override
 	public boolean isHit() {
 		return wasHitBy(getOwner().getPayload());
-	}
-	
-	@Override
-	public void destroy() {
-		super.destroy();
-	}
-	
-	
-	@Override
-	public Transform getTransform() {
-		return getEntity().getTransform();
-	}
-
-	@Override
-	public Vector getVelocity() {
-		return getEntity().getVelocity();
 	}
 
 	@Override
