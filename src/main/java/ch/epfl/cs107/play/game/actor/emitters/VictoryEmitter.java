@@ -6,11 +6,12 @@ import ch.epfl.cs107.play.game.actor.Emitter;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.game.actor.particles.VictoryParticle;
 import ch.epfl.cs107.play.math.Polygon;
+import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 
 public class VictoryEmitter extends Emitter {
 	
-	private static final float HEIGHT = 0.67f;
+	private static final float HEIGHT = 1.0f;
 	private static final float WIDTH = 1.0f;
 	private static final Polygon SHAPE = new Polygon(
 			0.0f, 0.0f,
@@ -26,11 +27,11 @@ public class VictoryEmitter extends Emitter {
 	 * @param position : absolute position
 	 * @param color : must be either BLUE, RED, GREEN, or YELLOW
 	 */
-	public VictoryEmitter(Vector position, Color color) {
+	public VictoryEmitter(Vector position) {
 		super(SHAPE, position, PARTICLE_LIMIT);
 		
 		// Set graphical representation
-		setGraphics(buildGraphics(color));
+		setGraphics(buildGraphics());
 	}
 	
 	/**
@@ -38,24 +39,12 @@ public class VictoryEmitter extends Emitter {
 	 * @param color : must be either BLUE, RED, GREEN, or YELLOW
 	 * @return the image graphics (w/o parent)
 	 */
-	private ImageGraphics buildGraphics(Color color) {
-		String path = "button.";
+	private ImageGraphics buildGraphics() {
+		String path = "blaster.png";
 		
-		if (color == Color.BLUE) {
-			path += "blue";
-		} else if (color == Color.RED) {
-			path += "red";
-		} else if (color == Color.GREEN) {
-			path += "green";
-		} else if (color == Color.YELLOW) {
-			path += "yellow";
-		}
-		
-		path += ".png";
-		
-		ImageGraphics graphics = new ImageGraphics(path, WIDTH, HEIGHT, new Vector(0.5f, 0.0f), 1.0f, 100.0f);
+		ImageGraphics graphics = new ImageGraphics(path, WIDTH, HEIGHT, new Vector(HEIGHT/2 + 0.1f, WIDTH/2 + 0.1f), 1.0f, 100.0f);
 		graphics.setParent(this);
-		
+		graphics.setRelativeTransform(Transform.I.rotated((float)Math.PI/2));
 		return graphics;
 	}
 	

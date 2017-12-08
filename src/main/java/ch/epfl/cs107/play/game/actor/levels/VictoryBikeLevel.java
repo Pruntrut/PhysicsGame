@@ -42,9 +42,9 @@ public class VictoryBikeLevel extends Level {
 		message.setText("VICTORY!");
 		
 		// Add Emitters
-		VictoryEmitter leftEmitter = new VictoryEmitter(new Vector(-4.0f, -1.0f), Color.BLUE);
+		VictoryEmitter leftEmitter = new VictoryEmitter(new Vector(-4.0f, -1.0f));
 		addActor(leftEmitter);
-		VictoryEmitter rightEmitter = new VictoryEmitter(new Vector(4.0f, -1.0f), Color.GREEN);
+		VictoryEmitter rightEmitter = new VictoryEmitter(new Vector(4.0f, -1.0f));
 		addActor(rightEmitter);
 	}
 
