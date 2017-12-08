@@ -1,7 +1,5 @@
 package ch.epfl.cs107.play.game.actor.emitters;
 
-import java.awt.Color;
-
 import ch.epfl.cs107.play.game.actor.Emitter;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.game.actor.particles.VictoryParticle;
