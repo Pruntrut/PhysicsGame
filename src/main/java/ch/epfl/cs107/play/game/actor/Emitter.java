@@ -64,9 +64,9 @@ public abstract class Emitter implements Actor {
 		}
 		
 		// Make new particles
-		//createParticles(particleLimit - particles.size());
+		// Passes max number of particles to createParticles
 		if (particles.size() < particleLimit) {
-			createParticles(1);
+			createParticles(particleLimit - particles.size());
 		}
 		
 		// Update particles
@@ -89,6 +89,13 @@ public abstract class Emitter implements Actor {
 		if (particles.size() < particleLimit) {
 			particles.add(particle);
 		}
+	}
+	
+	/**
+	 * @return the shape of the particle (used in createParticles)
+	 */
+	protected Shape getShape() {
+		return shape;
 	}
 	
 	@Override

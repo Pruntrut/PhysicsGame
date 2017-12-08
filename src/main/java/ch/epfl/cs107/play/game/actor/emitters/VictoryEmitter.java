@@ -47,27 +47,25 @@ public class VictoryEmitter extends Emitter {
 	}
 	
 	/**
-	 * Creates n particles and adds them to the list
-	 * @param number
+	 * Creates one particle and adds it to the list
+	 * @param number : ignored in this case
 	 */
 	@Override
 	protected void createParticles(int number) {
-		for (int i = 0; i < number; i++) {
-			// Angle between -pi/4 and pi/4
-			float velocityAngle = (float)(-Math.PI/6 + (Math.random() * (Math.PI/3)));
-			
-			Vector position = getTransform().getOrigin();
-			Vector velocity = new Vector(0.0f, 6.0f).rotated(velocityAngle);
-			Vector acceleration = new Vector(0.0f, -3.0f);
-			
-			// Angular velocity between 1 and -1
-			float angularVelocity = -1.0f + (float)(Math.random() * 2.0);
-			
-			// Duration between 0.5 and 2.0s
-			float duration = 0.5f + (float)(Math.random() * 3);
-			
-			VictoryParticle particle = new VictoryParticle(position, velocity, acceleration, 0.0f, angularVelocity, 0.0f, duration);
-			addParticle(particle);
-		}
+		// Angle between -pi/4 and pi/4
+		float velocityAngle = (float)(-Math.PI/6 + (Math.random() * (Math.PI/3)));
+		
+		Vector position = getTransform().getOrigin();
+		Vector velocity = new Vector(0.0f, 6.0f).rotated(velocityAngle);
+		Vector acceleration = new Vector(0.0f, -3.0f);
+		
+		// Angular velocity between 1 and -1
+		float angularVelocity = -1.0f + (float)(Math.random() * 2.0);
+		
+		// Duration between 0.5 and 2.0s
+		float duration = 0.5f + (float)(Math.random() * 3);
+		
+		VictoryParticle particle = new VictoryParticle(position, velocity, acceleration, 0.0f, angularVelocity, 0.0f, duration);
+		addParticle(particle);
 	}
 }
