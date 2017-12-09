@@ -14,7 +14,6 @@ public abstract class Level extends Node implements Actor {
 	
 	private List<Actor> actors;
 	private List<Checkpoint> checkpoints;		// List of all checkpoints
-	private List<Checkpoint> usedCheckpoints;	// List of already activated checkpoints
 	private Checkpoint currentCheckpoint;		// Most recent checkpoint (one being used)
 	
 	public Level(ActorGame owner) {
@@ -26,7 +25,6 @@ public abstract class Level extends Node implements Actor {
 		this.owner = owner;
 		actors = new ArrayList<>();
 		checkpoints = new ArrayList<>();
-		usedCheckpoints = new ArrayList<>();
 	}
 	
 	/**
@@ -69,9 +67,8 @@ public abstract class Level extends Node implements Actor {
 
 		for (Checkpoint checkpoint : checkpoints) {
 			// If new checkpoint is hit by bike, set it to current checkpoint
-			if (checkpoint.isHit() && !usedCheckpoints.contains(checkpoint)) {
+			if (checkpoint.isHit()) {
 				currentCheckpoint = checkpoint;
-				usedCheckpoints.add(checkpoint);
 			}
 		}
 	}
@@ -96,7 +93,6 @@ public abstract class Level extends Node implements Actor {
 		// Reset list
 		actors = new ArrayList<>();
 		checkpoints = new ArrayList<>();
-		usedCheckpoints = new ArrayList<>();
 		currentCheckpoint = null;
 	}
 	
@@ -116,7 +112,6 @@ public abstract class Level extends Node implements Actor {
 	 */
 	private void deleteActorsExceptCheckpoints() {
 		List<Checkpoint> checkpointTempList = new ArrayList<>();
-		List<Checkpoint> usedCheckpointTempList = new ArrayList<>();
 		Checkpoint currentCheckpointTemp = currentCheckpoint;
 		
 		// Remove checkpoints from actor list (avoid destroying them)
@@ -125,19 +120,11 @@ public abstract class Level extends Node implements Actor {
 			checkpointTempList.add(checkpoint);		// add them to the temporary list
 		}
 		
-		for (Checkpoint usedCheckpoint : usedCheckpoints) {
-			usedCheckpointTempList.add(usedCheckpoint);
-		}
-		
 		destroy();									// Destroys all other entities and empties checkpoint lists
 		
 		// Add checkpoints back in
 		for (Checkpoint checkpoint : checkpointTempList) {
 			addCheckpoint(checkpoint);				// Add checkpoints back in
-		}
-		
-		for (Checkpoint usedCheckpoint : usedCheckpointTempList) {
-			usedCheckpoints.add(usedCheckpoint);
 		}
 		
 		currentCheckpoint = currentCheckpointTemp;

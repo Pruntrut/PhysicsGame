@@ -30,7 +30,7 @@ public class BasicBikeLevel extends Level {
 	
 	@Override
 	protected void createCheckpoints() {
-		Checkpoint checkpoint = new Checkpoint(getOwner(), new Vector(40.0f, -4.0f));
+		Checkpoint checkpoint = new Checkpoint(getOwner(), new Vector(-4.0f, 1.0f));
 		addCheckpoint(checkpoint);
 	}
 	
