@@ -22,7 +22,7 @@ public class Checkpoint extends Trigger {
 	private static final String POLE_SPRITE = "metal.7.png";
 	
 	private boolean animating;
-	private static final float DURATION = 0.5f;
+	private static final float DURATION = 0.75f;
 	private float timeLeft = DURATION;
 	
 	/**
