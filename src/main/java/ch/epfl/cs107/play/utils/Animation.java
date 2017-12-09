@@ -27,4 +27,22 @@ public final class Animation {
 	public static final float easeIn(float t) {
 		return t*t;
 	}
+	
+	/**
+	 * If value goes over/under max/min, returns max/min 
+	 * Returns value otherwise
+	 * @param value
+	 * @param max
+	 * @param min
+	 * @return a float between max and min
+	 */
+	public static final float limit(float value, float max, float min) {
+		if (value > max) {
+			return max;
+		} else if (value < min) {
+			return min;
+		} else {
+			return value;
+		}
+	}
 }

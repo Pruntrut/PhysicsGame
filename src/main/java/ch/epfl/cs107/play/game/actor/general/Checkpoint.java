@@ -22,7 +22,7 @@ public class Checkpoint extends Trigger {
 	private static final String POLE_SPRITE = "metal.7.png";
 	
 	private boolean animating;
-	private static final float DURATION = 1.5f;
+	private static final float DURATION = 0.5f;
 	private float timeLeft = DURATION;
 	
 	/**
@@ -80,6 +80,7 @@ public class Checkpoint extends Trigger {
 		if (percentComplete < moveUpTime) {
 			// Move sign up using quadratic easing function
 			float height = maxHeight * Animation.easeIn(percentComplete/moveUpTime);
+			height = Animation.limit(height, maxHeight, 0.0f);
 			
 			signGraphics.setRelativeTransform(Transform.I.translated(0.0f, height));
 		} else if (percentComplete >= 0.2f && percentComplete < 0.8f) {
@@ -96,7 +97,7 @@ public class Checkpoint extends Trigger {
 		} else if (percentComplete >= 1-moveUpTime){
 			// Move sign down
 			float height = maxHeight - maxHeight * Animation.easeIn((percentComplete - (1-moveUpTime)) / moveUpTime);
-			
+			height = Animation.limit(height, maxHeight, 0.0f);
 			signGraphics.setRelativeTransform(Transform.I.translated(0.0f, height));
 		}
 	}
