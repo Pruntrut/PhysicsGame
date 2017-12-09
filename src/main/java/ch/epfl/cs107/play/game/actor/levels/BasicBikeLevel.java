@@ -4,6 +4,7 @@ import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.Level;
 import ch.epfl.cs107.play.game.actor.general.Checkpoint;
 import ch.epfl.cs107.play.game.actor.general.Finish;
+import ch.epfl.cs107.play.game.actor.general.Pendulum;
 import ch.epfl.cs107.play.game.actor.general.Terrain;
 import ch.epfl.cs107.play.math.Vector;
 
@@ -26,11 +27,16 @@ public class BasicBikeLevel extends Level {
 		finish = new Finish(getOwner(), true, new Vector(65.8f, 1f));
 		addActor(finish);
 		
+		// Make pendulum
+		Pendulum pendulum = new Pendulum(getOwner(), new Vector(43.0f, 2.0f), 1.0f, 4.5f);
+		pendulum.setVelocity(new Vector(5.0f, 0.0f));
+		addActor(pendulum);
+		
 	}
 	
 	@Override
 	protected void createCheckpoints() {
-		Checkpoint checkpoint = new Checkpoint(getOwner(), new Vector(45.0f, -4.0f));
+		Checkpoint checkpoint = new Checkpoint(getOwner(), new Vector(50.0f, -4.0f));
 		addCheckpoint(checkpoint);
 	}
 	

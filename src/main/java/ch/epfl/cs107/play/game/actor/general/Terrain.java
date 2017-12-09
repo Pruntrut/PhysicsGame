@@ -37,7 +37,7 @@ public class Terrain extends GameEntity implements Actor {
 	private ShapeGraphics terrainGraphics;
 	
 	public Terrain(ActorGame game, boolean fixed, float friction, Vector position, Polyline shape) {
-		super(game, fixed, friction, position);
+		super(game, fixed, position);
 		
 		if (shape == null) {
 			throw new NullPointerException("Shape cannot be null");
@@ -50,7 +50,7 @@ public class Terrain extends GameEntity implements Actor {
 	}
 	
 	public Terrain(ActorGame game, boolean fixed, float friction, Polyline shape) {
-		super(game, fixed, friction);
+		super(game, fixed);
 		
 		if (shape == null) {
 			throw new NullPointerException("Shape cannot be null");
