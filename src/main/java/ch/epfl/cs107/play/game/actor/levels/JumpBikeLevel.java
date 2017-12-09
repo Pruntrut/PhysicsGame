@@ -4,6 +4,7 @@ import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.Level;
 import ch.epfl.cs107.play.game.actor.crate.Crate;
 import ch.epfl.cs107.play.game.actor.general.Finish;
+import ch.epfl.cs107.play.game.actor.general.GravityWell;
 import ch.epfl.cs107.play.game.actor.general.Terrain;
 import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Vector;
@@ -39,6 +40,12 @@ public class JumpBikeLevel extends Level {
 		Terrain ramp = new Terrain(getOwner(), true, 1.0f, rampShape);
 		addActor(ramp);
 		
+		// Add the gravity well
+		float angle = (float)Math.atan(2.0f/5.0f);
+		float x = 55f + 2.0f / (float)Math.cos(angle);
+		GravityWell well = new GravityWell(getOwner(), new Vector(x, -22f), 5.0f, 2f, angle);
+		addActor(well);
+		
 		// Make the landing platfom
 		Polyline platformShape = new Polyline(
 				75.0f, -1000.0f,
@@ -49,7 +56,7 @@ public class JumpBikeLevel extends Level {
 		addActor(platform);
 		
 		// Add crates
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 6; i++) {
 			Crate crate = new Crate(getOwner(), false, new Vector(78.0f, -24.0f + i * 1.0f), 1.0f);
 			addActor(crate);
 		}
