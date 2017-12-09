@@ -31,6 +31,7 @@ public class Terrain extends GameEntity implements Actor {
 			50.0f, -5.0f,
 			55.0f, -4.0f,
 			65.0f, 0.0f,
+			90.0f, 0.0f,
 			6500.0f, -1000.0f
 		);
 		

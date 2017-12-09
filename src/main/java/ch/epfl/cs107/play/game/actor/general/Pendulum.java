@@ -6,7 +6,6 @@ import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
-import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.math.Circle;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
@@ -106,15 +105,11 @@ public class Pendulum extends GameEntity implements Actor {
 		Polyline ropeShape = new Polyline(ball.getPosition(), getTransform().onPoint(WIDTH/2, HEIGHT/2));
 		canvas.drawShape(ropeShape, Transform.I, null, Color.decode(ROPE_COLOR), 0.1f, 1.0f, 99.0f);
 	}
-
-	@Override
-	public void update(float deltaTime) {
-		
-	}
 	
 	@Override
 	public void destroy() {
 		super.destroy();
+		ball.destroy();
 	}
 
 }
