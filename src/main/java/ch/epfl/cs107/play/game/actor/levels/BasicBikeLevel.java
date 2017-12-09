@@ -4,6 +4,7 @@ import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.Level;
 import ch.epfl.cs107.play.game.actor.general.Checkpoint;
 import ch.epfl.cs107.play.game.actor.general.Finish;
+import ch.epfl.cs107.play.game.actor.general.GravityWell;
 import ch.epfl.cs107.play.game.actor.general.Pendulum;
 import ch.epfl.cs107.play.game.actor.general.Seesaw;
 import ch.epfl.cs107.play.game.actor.general.Terrain;

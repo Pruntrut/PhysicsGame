@@ -11,7 +11,7 @@ import ch.epfl.cs107.play.game.actor.Level;
 import ch.epfl.cs107.play.game.actor.Message;
 import ch.epfl.cs107.play.game.actor.levels.BasicBikeLevel;
 import ch.epfl.cs107.play.game.actor.levels.CheckpointLevel;
-import ch.epfl.cs107.play.game.actor.levels.CrateBikeLevel;
+import ch.epfl.cs107.play.game.actor.levels.JumpBikeLevel;
 import ch.epfl.cs107.play.game.actor.levels.VictoryBikeLevel;
 import ch.epfl.cs107.play.io.FileSystem;
 import ch.epfl.cs107.play.math.Vector;
@@ -137,7 +137,7 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 	protected List<Level> createLevelList() {
 		return Arrays.asList(
 				new BasicBikeLevel(this),
-				new CrateBikeLevel(this),
+				new JumpBikeLevel(this),
 				new CheckpointLevel(this),
 				new VictoryBikeLevel(this)
 		);

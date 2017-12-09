@@ -8,11 +8,11 @@ import ch.epfl.cs107.play.game.actor.general.Terrain;
 import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Vector;
 
-public class CrateBikeLevel extends Level {
+public class JumpBikeLevel extends Level {
 
 	private Finish finish;
 	
-	public CrateBikeLevel(ActorGame owner) {
+	public JumpBikeLevel(ActorGame owner) {
 		super(owner);
 	}
 
