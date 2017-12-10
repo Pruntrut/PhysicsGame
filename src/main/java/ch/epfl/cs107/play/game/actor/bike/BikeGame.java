@@ -12,6 +12,11 @@ import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Window;
 
+/**
+ * Old version of BikeGame, preserved for posterity
+ * To play game, load BikeGameWithLevels
+ * @deprecated use BikeGameWithLevels
+ */
 public class BikeGame extends ActorGame {
 	
 	private Bike bike;
@@ -30,7 +35,7 @@ public class BikeGame extends ActorGame {
 	
 	private void initialize() {
 		// Add terrain to list of actors
-		Terrain terrain = new Terrain(this, true, 0.85f);
+		Terrain terrain = new Terrain(this, 0.85f);
 		addActor(terrain);
 		
 		// Create bike

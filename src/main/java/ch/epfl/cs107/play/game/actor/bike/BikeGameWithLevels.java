@@ -48,6 +48,9 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 		return true;
 	}
 	
+	/**
+	 * Switches to next level
+	 */
 	@Override
 	public void nextLevel() {
 		// Remove previous level
@@ -96,7 +99,7 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 			message.drawFade(deltaTime);
 			setFreeze(true);
 		// If message has finished displaying but game still frozen, unfreeze game
-		// This makes sure game that was frozen in nextLevel() is not unfrozen
+		// This makes sure game that was frozen manually in nextLevel() is not unfrozen by the message
 		} else if (!initialMessageShown && message.wasShown()) {
 			initialMessageShown = true;
 			setFreeze(false);
@@ -141,13 +144,15 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 	 * Builds the bike entity, sets it as payload, actor, etc...
 	 */
 	private void buildBike(Vector position) {
-		// Build bike
 		bike = new Bike(this, false, position.add(0.0f, 0.5f));
 		addActor(bike);
 		setViewCandidate(bike);
 		setPayload(bike);
 	}
 	
+	/**
+	 * @return the list of levels for this bike game
+	 */
 	protected List<Level> createLevelList() {
 		return Arrays.asList(
 				new BasicBikeLevel(this),

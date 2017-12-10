@@ -41,6 +41,11 @@ public class Bike extends GameEntity implements Actor {
 	
 	private ShapeGraphics hitboxGraphics;
 	
+	/**
+	 * Creates a new bike at origin
+	 * @param game
+	 * @param fixed
+	 */
 	public Bike(ActorGame game, boolean fixed) {
 		super(game, fixed);
 		
@@ -51,6 +56,12 @@ public class Bike extends GameEntity implements Actor {
 		makeGraphics();
 	}
 
+	/**
+	 * Creates a new bike
+	 * @param game
+	 * @param fixed
+	 * @param position
+	 */
 	public Bike(ActorGame game, boolean fixed, Vector position) {
 		super(game, fixed, position);
 		
@@ -61,6 +72,12 @@ public class Bike extends GameEntity implements Actor {
 		makeGraphics();
 	}
 	
+	/**
+	 * Builds the wheels relative to bike
+	 * @param game
+	 * @param fixed
+	 * @param position : position of bike
+	 */
 	private void buildWheels(ActorGame game, boolean fixed, Vector position) {
 		leftWheel = new Wheel(game, fixed, position.add(new Vector(-1.0f, 0.0f)), WHEEL_RADIUS);
 		rightWheel = new Wheel(game, fixed, position.add(new Vector(1.0f, 0.0f)), WHEEL_RADIUS);
@@ -69,6 +86,9 @@ public class Bike extends GameEntity implements Actor {
 		rightWheel.attach(getEntity(), new Vector(1.0f,  0.0f), new Vector(0.5f, -1.0f));
 	}
 	
+	/**
+	 * Creates the hitbox
+	 */
 	private void buildPart() {
 		PartBuilder partBuilder = getEntity().createPartBuilder();
 		partBuilder.setShape(hitbox);
@@ -76,6 +96,9 @@ public class Bike extends GameEntity implements Actor {
 		partBuilder.build();
 	}
 	
+	/**
+	 * Creates the graphics
+	 */
 	private void makeGraphics() {
 		cyclist = new Cyclist(getEntity(), (float)Math.PI/2, Color.WHITE);
 		hitboxGraphics = new ShapeGraphics(hitbox, Color.RED, null, 0.1f, 0.5f, 0.0f);
@@ -83,6 +106,9 @@ public class Bike extends GameEntity implements Actor {
 		
 	}	
 	
+	/**
+	 * Creates a contact lsitener which tells bike if it has hit an entity other than its wheels
+	 */
 	private void setupContactListener() {
 		ContactListener listener = new ContactListener() {
 			@Override
@@ -198,6 +224,9 @@ public class Bike extends GameEntity implements Actor {
 		this.frozen = frozen;
 	}
 	
+	/**
+	 * @return if bike was hit
+	 */
 	public boolean isHit() {
 		return hit;
 	}

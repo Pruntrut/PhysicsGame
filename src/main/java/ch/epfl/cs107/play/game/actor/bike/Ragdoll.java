@@ -12,6 +12,9 @@ import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.math.WeldConstraintBuilder;
 import ch.epfl.cs107.play.window.Canvas;
 
+/**
+ * A physical model (entity) of the cyclist body
+ */
 public class Ragdoll extends GameEntity implements Actor {
 	
 	private CyclistModel model;
@@ -24,6 +27,15 @@ public class Ragdoll extends GameEntity implements Actor {
 	private Entity leftCalf;
 	private Entity rightCalf;
 	
+	/**
+	 * Creates a new ragdoll
+	 * @param game
+	 * @param model : model on which the ragdoll will be based on
+	 * @param position
+	 * @param velocity
+	 * @param angularPosition
+	 * @param angularVelocity
+	 */
 	public Ragdoll(ActorGame game, CyclistModel model, Vector position, Vector velocity, float angularPosition, float angularVelocity) {
 		super(game, false, position);
 		

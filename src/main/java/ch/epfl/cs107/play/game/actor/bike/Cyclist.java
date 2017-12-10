@@ -26,6 +26,12 @@ public class Cyclist extends Node implements Graphics {
 	private ShapeGraphics leftCalf;
 	private ShapeGraphics rightCalf;
 	
+	/**
+	 * Creates a new Cyclist
+	 * @param parent
+	 * @param angle : the inital angle of the wheel (for the pedaling animation)
+	 * @param color : color of cyclist
+	 */
 	public Cyclist(Positionable parent, float angle, Color color) {
 		
 		this.angle = angle;

@@ -13,6 +13,7 @@ import ch.epfl.cs107.play.math.Vector;
 /**
  * This is a collection of Shapes that form the cyclist
  * Used to pass Model of cyclist from Cyclist to Ragdoll
+ * It convers Cyclist's Polylines into polygons of the same thickness
  */
 public class CyclistModel {
 	public final Color color;
