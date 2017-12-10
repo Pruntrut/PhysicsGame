@@ -29,7 +29,7 @@ Possible instances of game include :
 | *Right arrow* | Lean right 		             |
 | *R*           | Reset level                    |
 
-## Levels of BikeGameWithLevel
+## Levels of BikeGameWithLevels
 
 ### Level 1 (Basic level)
 
