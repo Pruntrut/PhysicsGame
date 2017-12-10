@@ -8,15 +8,16 @@ Game game = new BikeGameWithLevels(); // Replace BikeGame with any instance of G
 ```
 
 Possible instances of game include :
-- BikeGameWithLevels, the main game
+- **BikeGameWithLevels**, the main game
 - *BikeGame*, deprecated (use BikeGameWithLevels instead)
 - CrateGame, a game used to test crates
 - Tutorials :
-..- HelloWorldGame, very first game
-..- SimpleCrateGame, tests physics engine
-..- RopeGame, tests rope contstraints
-..- ScaleGame, tests keyboard controls and revolute constraints
-..- ContactGame, tests contact listeners
+    - HelloWorldGame, very first game
+    - SimpleCrateGame, tests physics engine
+    - RopeGame, tests rope contstraints
+    - ScaleGame, tests keyboard controls and revolute constraints	
+    - ContactGame, tests contact listeners
+
 
 ## Controls
 | Key           | Description                    |
