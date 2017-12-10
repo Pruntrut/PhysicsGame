@@ -27,11 +27,15 @@ public abstract class Trigger extends GameEntity implements Actor {
 	 * @param game
 	 * @param fixed 
 	 * @param position
-	 * @param hitboxShape : the shape of the trigger hitbox
+	 * @param hitboxShape : the shape of the trigger hitbox, non null
 	 * @param permanent : whether the trigger has a certain timeout
 	 */
 	public Trigger(ActorGame game, Vector position, Shape hitboxShape, boolean permanent) {
 		super(game, true, position);
+		
+		if (hitboxShape == null) {
+			throw new NullPointerException("hitboxShape cannot be null");
+		}
 		
 		// Build part 
 		PartBuilder partBuilder = getEntity().createPartBuilder();
@@ -110,12 +114,6 @@ public abstract class Trigger extends GameEntity implements Actor {
 	 */
 	public void setInactive() {
 		setInactive(Float.POSITIVE_INFINITY);
-	}
-
-	@Override
-	public void draw(Canvas canvas) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	/**

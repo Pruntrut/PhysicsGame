@@ -11,9 +11,4 @@ public interface GameWithLevels {
 	 * Resets current level
 	 */
 	void resetLevel();
-	
-	// TODO : use this
-	/*
-	void goToLevel(int level) throws IllegalArgumentException;
-	*/
 }

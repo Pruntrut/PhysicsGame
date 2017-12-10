@@ -51,6 +51,10 @@ public class ImageParticle extends Particle {
 		this.depth = depth;
 	}
 	
+	/**
+	 * Copies an ImageParticle
+	 * @param other
+	 */
 	public ImageParticle(ImageParticle other) {
 		super(other);
 		

@@ -40,6 +40,10 @@ public class GravityWellParticle extends Particle {
 		setDuration(calculateDuration());
 	}
 
+	/**
+	 * Copies another particle
+	 * @param other
+	 */
 	public GravityWellParticle(GravityWellParticle other) {
 		super(other);
 		this.graphics = other.graphics;

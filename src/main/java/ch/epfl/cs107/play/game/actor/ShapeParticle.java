@@ -61,7 +61,7 @@ public class ShapeParticle extends Particle {
 	}
 
 	/**
-	 * Deep copies another ShapeParticle
+	 * Copies another ShapeParticle
 	 * @param other
 	 */
 	public ShapeParticle(ShapeParticle other) {

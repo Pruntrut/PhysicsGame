@@ -1,5 +1,10 @@
 package ch.epfl.cs107.play.utils;
 
+/**
+ * This class was mainly created to help the animation
+ * of the checkpoint, it contains utilities such as easing
+ * functions, etc...
+ */
 public final class Animation {
 	/**
 	 * Goes from 0 to 0.5 at midpoint then to 1

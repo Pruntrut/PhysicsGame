@@ -38,6 +38,9 @@ public class VictoryParticle extends Particle {
 		
 	}
 	
+	/** 
+	 * Creates the graphics (with a random star colour
+	 */
 	private void buildGraphics() {
 		// Select random star sprite
 		String path = "star.";

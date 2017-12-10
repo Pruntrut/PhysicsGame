@@ -16,6 +16,10 @@ public abstract class Level extends Node implements Actor {
 	private List<Checkpoint> checkpoints;		// List of all checkpoints
 	private Checkpoint currentCheckpoint;		// Most recent checkpoint (one being used)
 	
+	/**
+	 * Creates a new level
+	 * @param owner : the game in which the level takes place
+	 */
 	public Level(ActorGame owner) {
 		
 		if (owner == null) {
@@ -32,8 +36,8 @@ public abstract class Level extends Node implements Actor {
 	 * including checkpoints
 	 */
 	public final void createAllActors() {
-		// Method is final to avoid child class re-implementing, 
-		// circumventing the createCheckpoints and createActors methods
+		// Method is final to avoid child classes re-implementing it, 
+		// forces child classes to use createActors and createCheckpoints
 		
 		createActors();
 		createCheckpoints();
@@ -49,7 +53,7 @@ public abstract class Level extends Node implements Actor {
 	 * Creates all the checkpoints in level 
 	 * Does nothing by default, to be implemented by child class if it wants to add
 	 * checkpoint functionality
-	 * @see createCheckpoints();
+	 * @see createActors();
 	 */
 	protected void createCheckpoints() {
 		// Does nothing by default, if want to add 

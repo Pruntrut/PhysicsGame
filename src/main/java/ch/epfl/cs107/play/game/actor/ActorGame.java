@@ -68,6 +68,10 @@ public abstract class ActorGame implements Game {
 		// Does nothing at the moment
 	}
 	
+	/**
+	 * Updates the various actors in the game,
+	 * Changes camera position, etc...
+	 */
 	@Override
 	public void update(float deltaTime) {
 		
