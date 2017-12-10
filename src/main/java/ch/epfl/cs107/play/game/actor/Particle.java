@@ -133,7 +133,6 @@ public abstract class Particle implements Graphics, Positionable {
 	public boolean isExpired() {
 		return permanent || timeLeft <= 0.0f;
 	}
-	
 
 	/**
 	 * @return transformation

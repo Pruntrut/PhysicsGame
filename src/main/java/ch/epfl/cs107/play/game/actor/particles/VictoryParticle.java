@@ -34,7 +34,6 @@ public class VictoryParticle extends Particle {
 	 */
 	public VictoryParticle(VictoryParticle other) {
 		super(other);
-		
 		this.graphics = other.graphics;
 		
 	}

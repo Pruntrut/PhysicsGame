@@ -47,7 +47,7 @@ public class VictoryEmitter extends Emitter {
 	}
 	
 	/**
-	 * Creates one particle and adds it to the list
+	 * Creates one victory particle and adds it to the list
 	 * @param number : ignored in this case
 	 */
 	@Override

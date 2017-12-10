@@ -37,7 +37,6 @@ public class BasicBikeLevel extends Level {
 		// Add seesaw
 		Seesaw seesaw = new Seesaw(getOwner(),new Vector(70.0f, 0.0f), true);
 		addActor(seesaw);
-		
 	}
 	
 	@Override
