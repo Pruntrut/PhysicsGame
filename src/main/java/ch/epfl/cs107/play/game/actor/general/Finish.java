@@ -42,7 +42,7 @@ public class Finish extends Trigger {
 	 */
 	@Override
 	public boolean isHit() {
-		return wasHitBy(getOwner().getPayload());
+		return wasHitBy(getOwner().getPayload()) && getOwner().getPayload().isAlive();
 	}
 
 	@Override
