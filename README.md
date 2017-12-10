@@ -4,7 +4,7 @@
 In `Program.java`, modify line 34 to select the game, then execute `Program.java`
 For example : 
 ```java
-Game game = new BikeGameWithLevels(); // Replace BikeGame with any instance of Game
+34. Game game = new BikeGameWithLevels(); // Replace BikeGame with any instance of Game
 ```
 
 Possible instances of game include :
@@ -28,3 +28,9 @@ Possible instances of game include :
 | *Left arrow*  | Lean left 		             |
 | *Right arrow* | Lean right 		             |
 | *R*           | Reset level                    |
+
+## Levels of BikeGameWithLevel
+
+### Level 1
+
+This level showcases 
