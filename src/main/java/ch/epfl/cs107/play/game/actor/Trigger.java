@@ -7,7 +7,6 @@ import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Shape;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
-import ch.epfl.cs107.play.window.Canvas;
 
 public abstract class Trigger extends GameEntity implements Actor {
 
