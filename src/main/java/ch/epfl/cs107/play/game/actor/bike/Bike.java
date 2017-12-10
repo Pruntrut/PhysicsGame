@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 
 import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.actor.ActorGame;
-import ch.epfl.cs107.play.game.actor.GameEntity;
+import ch.epfl.cs107.play.game.actor.Payload;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.game.actor.general.Wheel;
 import ch.epfl.cs107.play.math.Contact;
@@ -17,7 +17,7 @@ import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
 import ch.epfl.cs107.play.window.Keyboard;
 
-public class Bike extends GameEntity implements Actor {
+public class Bike extends Payload implements Actor {
 
 	private static final float MAX_WHEEL_SPEED = 20.0f;
 	private static final float WHEEL_RADIUS = 0.5f;
@@ -239,6 +239,14 @@ public class Bike extends GameEntity implements Actor {
 	@Override
 	public Vector getVelocity() {
 		return getEntity().getVelocity();
+	}
+
+	/**
+	 * @return if bike has been killed or not (used in payload)
+	 */
+	@Override
+	public boolean isAlive() {
+		return !isHit();
 	}
 	
 }

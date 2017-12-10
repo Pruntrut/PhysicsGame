@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
+import ch.epfl.cs107.play.game.actor.Payload;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.game.actor.Trigger;
 import ch.epfl.cs107.play.math.Circle;
@@ -55,11 +56,13 @@ public class Checkpoint extends Trigger {
 	}
 
 	/**
-	 * If payload hits the checkpoint returns true and set checkpoint to inactive
+	 * If live payload hits the checkpoint returns true and set checkpoint to inactive
 	 * @return a boolean 
 	 */
 	public boolean isHit() {
-		if (wasHitBy(getOwner().getPayload())) {
+		Payload payload = getOwner().getPayload();
+		
+		if (wasHitBy(payload) && payload.isAlive())  {
 			setInactive();
 			animating = true;
 			return true;

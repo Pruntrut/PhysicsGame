@@ -36,7 +36,7 @@ public abstract class ActorGame implements Game {
 	private FileSystem fileSystem;
 	
 	// Main character (payload)
-	private GameEntity payload;
+	private Payload payload;
 	
 	// Viewport properties
 	private Vector viewCenter;
@@ -152,7 +152,7 @@ public abstract class ActorGame implements Game {
 	/**
 	 * @return the current main entity (payload)
 	 */
-	public GameEntity getPayload() {
+	public Payload getPayload() {
 		return payload;
 	}
 	
@@ -160,7 +160,7 @@ public abstract class ActorGame implements Game {
 	 * Sets the main entity to given parameter
 	 * @param an entity
 	 */
-	public void setPayload(GameEntity actor) {
+	public void setPayload(Payload actor) {
 		payload = actor;
 	}
 	
