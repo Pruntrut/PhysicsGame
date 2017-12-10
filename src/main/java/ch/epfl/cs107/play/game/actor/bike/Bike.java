@@ -8,12 +8,10 @@ import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.game.actor.general.Wheel;
-import ch.epfl.cs107.play.math.Circle;
 import ch.epfl.cs107.play.math.Contact;
 import ch.epfl.cs107.play.math.ContactListener;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
-import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
@@ -32,7 +30,7 @@ public class Bike extends GameEntity implements Actor {
 	
 	private boolean hit = false;
 	
-	private ShapeGraphics[] bodyGraphics;
+	private Cyclist cyclist;
 	
 	private Polygon hitbox = new Polygon(
 		0.0f, 0.5f,
@@ -40,6 +38,8 @@ public class Bike extends GameEntity implements Actor {
 		0.0f, 2.0f,
 		-0.5f, 1.0f
 	);
+	
+	private ShapeGraphics hitboxGraphics;
 	
 	public Bike(ActorGame game, boolean fixed) {
 		super(game, fixed);
@@ -77,48 +77,10 @@ public class Bike extends GameEntity implements Actor {
 	}
 	
 	private void makeGraphics() {
+		cyclist = new Cyclist(getEntity(), (float)Math.PI/2, Color.WHITE);
+		hitboxGraphics = new ShapeGraphics(hitbox, Color.RED, null, 0.1f, 0.5f, 0.0f);
+		hitboxGraphics.setParent(getEntity());
 		
-		Color color = Color.WHITE;
-		float thickness = 0.2f;
-		bodyGraphics = new ShapeGraphics[5];
-		
-		// Draw head
-		Circle head = new Circle(0.2f, getHeadLocation());
-		bodyGraphics[0] = new ShapeGraphics(head, color, color, thickness);
-		
-		// Draw arm
-		Polyline arm = new Polyline(
-			getShoulderLocation(), 
-			getHandLocation()
-		);
-		bodyGraphics[1] = new ShapeGraphics(arm, color, color, thickness);
-		
-		// Draw back
-		Polyline back = new Polyline(
-			getShoulderLocation(), 
-			getHipLocation(),
-			getKneeLocation()
-		);
-		bodyGraphics[2] = new ShapeGraphics(back, null, color, thickness);
-		
-		// Draw first leg
-		Polyline firstLeg = new Polyline(
-			getKneeLocation(),
-			getFirstLegLocation()
-		);
-		bodyGraphics[3] = new ShapeGraphics(firstLeg, color, color, thickness);
-		
-		// Draw second leg
-		Polyline secondLeg = new Polyline(
-			getKneeLocation(),
-			getSecondLegLocation()
-		);
-		bodyGraphics[4] = new ShapeGraphics(secondLeg, color, color, thickness);
-		
-		// Add parent entity to every body part
-		for (ShapeGraphics bodyPart : bodyGraphics) {
-			bodyPart.setParent(getEntity());
-		}
 	}	
 	
 	private void setupContactListener() {
@@ -144,11 +106,15 @@ public class Bike extends GameEntity implements Actor {
 	
 	@Override
 	public void update(float deltaTime) {		
-		if (!hit && !frozen) {
+		if (!hit && !frozen) {			
 			updateControls();
+			cyclist.setAngle(leftWheel.getAngularPositon());
 		}
 	}
 	
+	/**
+	 * Changes state of bike according to key pressed
+	 */
 	private void updateControls() {
 		
 		Keyboard keyboard = getOwner().getKeyboard();
@@ -164,8 +130,11 @@ public class Bike extends GameEntity implements Actor {
 		
 		// If down arrow is pressed, turn motors on, immobilize them (speed = 0)
 		if (keyboard.get(KeyEvent.VK_DOWN).isDown()) {
-			leftWheel.power(0.0f);
-			rightWheel.power(0.0f);
+			if (lookingLeft) {
+				rightWheel.power(0.0f);
+			} else {
+				leftWheel.power(0.0f);
+			}	
 		}
 		
 		// If up arrow is pressed, set driving wheel's speed to the max speed
@@ -197,17 +166,12 @@ public class Bike extends GameEntity implements Actor {
 		leftWheel.draw(canvas);
 		rightWheel.draw(canvas);
 		
-		// Draw body parts
-		for (ShapeGraphics bodyPart : bodyGraphics) {
-			if (lookingLeft) {
-				// Invert direction of cyclist
-				bodyPart.setRelativeTransform(Transform.I.scaled(-1.0f, 1.0f));
-			} else {
-				bodyPart.setRelativeTransform(Transform.I.scaled(1.0f, 1.0f));
-			}
-			
-			bodyPart.draw(canvas);
+		
+		if (!hit) {
+			cyclist.setDirection(lookingLeft);
+			cyclist.draw(canvas);
 		}
+		
 	}
 	
 	@Override
@@ -216,6 +180,14 @@ public class Bike extends GameEntity implements Actor {
 		
 		leftWheel.destroy();
 		rightWheel.destroy();
+	}
+	
+	/**
+	 * @return a ragdoll version of the cyclist
+	 */
+	public Ragdoll createRagdoll() {
+		return new Ragdoll(getOwner(), cyclist.createModel(), getEntity().getPosition(), getEntity().getVelocity(), 
+				getEntity().getAngularPosition(), getEntity().getAngularVelocity());
 	}
 
 	/**
@@ -240,31 +212,4 @@ public class Bike extends GameEntity implements Actor {
 		return getEntity().getVelocity();
 	}
 	
-	private Vector getHeadLocation() {
-		return new Vector(0.0f, 2.0f);
-	}
-	
-	private Vector getShoulderLocation() {
-		return new Vector(-0.1f, 1.7f);
-	}
-	
-	private Vector getHandLocation() {
-		return new Vector(0.5f, 1.0f);
-	}
-	
-	private Vector getHipLocation() {
-		return new Vector(-0.5f, 1.0f);
-	}
-	
-	private Vector getKneeLocation() {
-		return new Vector(0.1f, 0.6f);
-	}
-	
-	private Vector getFirstLegLocation() {
-		return new Vector(0.3f, -0.1f);
-	}
-	
-	private Vector getSecondLegLocation() {
-		return new Vector(-0.3f, -0.1f);
-	}
 }

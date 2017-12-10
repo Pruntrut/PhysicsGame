@@ -21,6 +21,7 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 
 	// Main entity of game 
 	private Bike bike;
+	private Ragdoll ragdoll;
 	
 	// List of level and current level
 	private List<Level> levels;
@@ -104,8 +105,9 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 			nextLevel();
 		} else if (getKeyboard().get(KeyEvent.VK_R).isPressed()) {
 			resetLevel();
-		} else if (bike.isHit()) {
-			resetLevel();
+		} else if (bike.isHit() && ragdoll == null) {
+			ragdoll = bike.createRagdoll();
+			addActor(ragdoll);
 		}
 		
 	}
@@ -118,8 +120,9 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 	@Override
 	public void resetLevel() {
 		removeActor(bike);
-		buildBike(currentLevel.getBikeInitialPosition());
+		removeActor(ragdoll);
 		
+		buildBike(currentLevel.getBikeInitialPosition());
 		currentLevel.reset();
 	}
 	

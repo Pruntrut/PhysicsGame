@@ -12,6 +12,7 @@ import ch.epfl.cs107.play.math.RevoluteConstraintBuilder;
 import ch.epfl.cs107.play.math.RopeConstraintBuilder;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
+import ch.epfl.cs107.play.math.WeldConstraintBuilder;
 import ch.epfl.cs107.play.math.WheelConstraintBuilder;
 import ch.epfl.cs107.play.math.World;
 import ch.epfl.cs107.play.window.Canvas;
@@ -198,6 +199,25 @@ public abstract class ActorGame implements Game {
 	}
 	
 	/**
+	 * Creates an entity in world then returns it
+	 * @param fixed : determines if entity is fixed or not
+	 * @param position : the initial position of the entity
+	 * @param velocity : the initial velocity of the entity
+	 * @param angularPositon : the initial angluar position of the entity
+	 * @param angularVelocity : the initial angular vloctiy of the entity
+	 * @return the built entity
+	 */
+	public Entity createEntity(boolean fixed, Vector position, Vector velocity, float angularPosition, float angularVeloctiy) {
+		EntityBuilder entityBuilder = world.createEntityBuilder();
+		entityBuilder.setFixed(fixed);
+		entityBuilder.setPosition(position);
+		entityBuilder.setVelocity(velocity);
+		entityBuilder.setAngularPosition(angularPosition);
+		entityBuilder.setAngularVelocity(angularVeloctiy);
+		return entityBuilder.build();
+	}
+	
+	/**
 	 * @return a wheel constraint builder
 	 */
 	public WheelConstraintBuilder getWheelContraintBuilder() {
@@ -214,11 +234,16 @@ public abstract class ActorGame implements Game {
 	/**
 	 * @return a revolute constraint builder
 	 */
-	public RevoluteConstraintBuilder getRevoluteContraintBuilder() {
+	public RevoluteConstraintBuilder getRevoluteConstraintBuilder() {
 		return world.createRevoluteConstraintBuilder();
 	}
 	
-	
+	/**
+	 * @return a welf constraint builder
+	 */
+	public WeldConstraintBuilder getWeldConstraintBuilder() {
+		return world.createWeldConstraintBuilder();
+	}
 	
 
 }

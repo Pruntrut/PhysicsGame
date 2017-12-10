@@ -16,7 +16,7 @@ import ch.epfl.cs107.play.window.Canvas;
 public class Wheel extends GameEntity implements Actor {
 
 	private float radius;
-	private static final float FRICTION = 0.85f; 
+	private static final float FRICTION = 1f; 
 	
 	private WheelConstraint constraint;		// The constraint attaching the wheel to its vehicle
 	private Entity vehicle;					// The vehicle it is attached to 
@@ -116,6 +116,10 @@ public class Wheel extends GameEntity implements Actor {
 	@Override
 	public Vector getVelocity() {
 		return getEntity().getVelocity();
+	}
+	
+	public float getAngularPositon() {
+		return getEntity().getAngularPosition();
 	}
 
 	@Override

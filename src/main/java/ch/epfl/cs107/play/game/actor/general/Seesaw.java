@@ -71,7 +71,7 @@ public class Seesaw extends GameEntity implements Actor {
 		baseGraphics.setParent(getEntity());
 		
 		// Revolute constraint
-		RevoluteConstraintBuilder revoluteConstraintBuilder = getOwner().getRevoluteContraintBuilder();
+		RevoluteConstraintBuilder revoluteConstraintBuilder = getOwner().getRevoluteConstraintBuilder();
 		revoluteConstraintBuilder.setFirstEntity(getEntity());
 		revoluteConstraintBuilder.setFirstAnchor(new Vector(BASE_WIDTH/2, BASE_HEIGHT));
 		revoluteConstraintBuilder.setSecondEntity(plank);
