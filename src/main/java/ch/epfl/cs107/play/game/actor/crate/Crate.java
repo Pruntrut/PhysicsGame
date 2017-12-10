@@ -16,6 +16,13 @@ public class Crate extends GameEntity implements Actor {
 	private static final String CRATE_SPRITE = "box.4.png";
 	private ImageGraphics crateGraphics;
 
+	/**
+	 * Creates a new Crate
+	 * @param game
+	 * @param fixed
+	 * @param position
+	 * @param length
+	 */
 	public Crate(ActorGame game, boolean fixed, Vector position, float length) {
 		super(game, fixed, position);
 		
@@ -29,6 +36,11 @@ public class Crate extends GameEntity implements Actor {
 		makeGraphics();
 	}
 
+	/**
+	 * Creates a new crate at origin, of length 1
+	 * @param game
+	 * @param fixed
+	 */
 	public Crate(ActorGame game, boolean fixed) {
 		super(game, fixed);
 
