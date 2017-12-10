@@ -41,9 +41,7 @@ public class JumpBikeLevel extends Level {
 		addActor(ramp);
 		
 		// Add the gravity well
-		float angle = (float)Math.atan(2.0f/5.0f);
-		float x = 55f + 2.0f / (float)Math.cos(angle);
-		GravityWell well = new GravityWell(getOwner(), new Vector(x, -22f), 5.0f, 2f, angle);
+		GravityWell well = new GravityWell(getOwner(), new Vector(52.5f, -23.0f), 5.0f, 2f, 0.0f);
 		addActor(well);
 		
 		// Make the landing platfom
