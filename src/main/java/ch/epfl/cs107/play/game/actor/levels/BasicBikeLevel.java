@@ -21,7 +21,7 @@ public class BasicBikeLevel extends Level {
 	protected void createActors() {
 		
 		// Make the terrain
-		Terrain terrain = new Terrain(getOwner(), true, 1.0f);
+		Terrain terrain = new Terrain(getOwner(), 1.0f);
 		addActor(terrain);
 		
 		// Make finish line

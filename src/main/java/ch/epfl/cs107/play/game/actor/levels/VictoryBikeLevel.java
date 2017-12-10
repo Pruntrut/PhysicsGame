@@ -33,7 +33,7 @@ public class VictoryBikeLevel extends Level {
 				1000.0f, -1.0f,
 				1000.0f, -1000.0f
 		);
-		Terrain terrain = new Terrain(getOwner(), true, 1.0f, shape);
+		Terrain terrain = new Terrain(getOwner(), 1.0f, shape);
 		addActor(terrain);
 		
 		// Add victory message

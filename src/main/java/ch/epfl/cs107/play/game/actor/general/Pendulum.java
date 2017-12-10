@@ -92,6 +92,10 @@ public class Pendulum extends GameEntity implements Actor {
 		return Vector.ZERO;
 	}
 	
+	/**
+	 * Sets velocity of ball
+	 * @param velocity
+	 */
 	public void setVelocity(Vector velocity) {
 		ball.setVelocity(velocity);
 	}

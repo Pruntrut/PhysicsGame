@@ -37,7 +37,7 @@ public class JumpBikeLevel extends Level {
 				60.0f, -22.0f,
 				60.0f, -1000.0f
 		);
-		Terrain ramp = new Terrain(getOwner(), true, 1.0f, rampShape);
+		Terrain ramp = new Terrain(getOwner(), 1.0f, rampShape);
 		addActor(ramp);
 		
 		// Add the gravity well
@@ -50,7 +50,7 @@ public class JumpBikeLevel extends Level {
 				75.0f, -24.0f,
 				1000.0f, -24.0f
 		);
-		Terrain platform = new Terrain(getOwner(), true, 1.0f, platformShape);
+		Terrain platform = new Terrain(getOwner(), 1.0f, platformShape);
 		addActor(platform);
 		
 		// Add crates

@@ -37,8 +37,16 @@ public class Terrain extends GameEntity implements Actor {
 		
 	private ShapeGraphics terrainGraphics;
 	
-	public Terrain(ActorGame game, boolean fixed, float friction, Vector position, Polyline shape) {
-		super(game, fixed, position);
+	/**
+	 * Creates a new terrain
+	 * @param game
+	 * @param fixed 
+	 * @param friction
+	 * @param position
+	 * @param shape : shape of terrain, non null
+	 */
+	public Terrain(ActorGame game, float friction, Vector position, Polyline shape) {
+		super(game, true, position);
 		
 		if (shape == null) {
 			throw new NullPointerException("Shape cannot be null");
@@ -50,8 +58,14 @@ public class Terrain extends GameEntity implements Actor {
 		makeGraphics();
 	}
 	
-	public Terrain(ActorGame game, boolean fixed, float friction, Polyline shape) {
-		super(game, fixed);
+	/**
+	 * Creates a new Terrain at origin
+	 * @param game
+	 * @param friction
+	 * @param shape : shape of terrain, non null
+	 */
+	public Terrain(ActorGame game, float friction, Polyline shape) {
+		super(game, true);
 		
 		if (shape == null) {
 			throw new NullPointerException("Shape cannot be null");
@@ -63,15 +77,29 @@ public class Terrain extends GameEntity implements Actor {
 		makeGraphics();
 	}
 	
-	public Terrain(ActorGame game, boolean fixed, float friction, Vector position) {
-		this(game, fixed, friction, position,DEFAULT_TERRAIN_SHAPE);
+	/**
+	 * Creates a new Terrain of default shape
+	 * @param game
+	 * @param friction
+	 * @param position
+	 */
+	public Terrain(ActorGame game, float friction, Vector position) {
+		this(game, friction, position,DEFAULT_TERRAIN_SHAPE);
 	}
 	
-	public Terrain(ActorGame game, boolean fixed, float friction) {
-		this(game, fixed, friction, DEFAULT_TERRAIN_SHAPE);
+	/**
+	 * Creates a new Terrain at origin with default terrain shape
+	 * @param game
+	 * @param friction
+	 */
+	public Terrain(ActorGame game, float friction) {
+		this(game, friction, DEFAULT_TERRAIN_SHAPE);
 	}
 
-	
+	/**
+	 * Builds the part of the terrain
+	 * @param friciton
+	 */
 	private void buildPart(float friciton) {
 		PartBuilder partBuilder = getEntity().createPartBuilder();
 		partBuilder.setFriction(friciton);
@@ -79,6 +107,9 @@ public class Terrain extends GameEntity implements Actor {
 		partBuilder.build();
 	}
 	
+	/** 
+	 * Creates the graphics
+	 */
 	private void makeGraphics() {
 		terrainGraphics = new ShapeGraphics(terrainShape, BROWN, GREEN, 0.1f);
 		terrainGraphics.setParent(getEntity());

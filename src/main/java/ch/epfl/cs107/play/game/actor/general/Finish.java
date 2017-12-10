@@ -4,14 +4,12 @@ import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.game.actor.Trigger;
 import ch.epfl.cs107.play.math.Circle;
-import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
 
 public class Finish extends Trigger {
 
 	private ImageGraphics flagGraphics;
-	private float radius;
 
 	/**
 	 * Creates a new Finish
@@ -22,9 +20,7 @@ public class Finish extends Trigger {
 	 */
 	public Finish(ActorGame game, Vector position, float radius) {
 		super(game, position, new Circle(radius));
-		
-		this.radius = radius;
-		
+				
 		// Make graphics
 		flagGraphics = new ImageGraphics("flag.red.png", 2*radius, 2*radius, new Vector(0.5f, 0.5f));
 		flagGraphics.setParent(getEntity());

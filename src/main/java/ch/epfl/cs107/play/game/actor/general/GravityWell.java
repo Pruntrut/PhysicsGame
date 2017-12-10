@@ -36,12 +36,16 @@ public class GravityWell extends GameEntity implements Actor {
 	 * Creates a new gravity well
 	 * @param game
 	 * @param position
-	 * @param width : width of boost rectangle
-	 * @param height : length of boost rectangle
+	 * @param width : width of boost rectangle, non-negative
+	 * @param height : length of boost rectangle, non-negative
 	 * @param angle : orientation of gravity well (direction of force)
 	 */
 	public GravityWell(ActorGame game, Vector position, float width, float height, float angle) {
 		super(game, true, position);
+		
+		if (height < 0 || width < 0) {
+			throw new IllegalArgumentException("Height and Width are non-negative");
+		}
 
 		this.height = height;
 		this.width = width;

@@ -20,7 +20,7 @@ public class CheckpointLevel extends Level {
 	protected void createActors() {
 		
 		// Make the terrain
-		Terrain terrain = new Terrain(getOwner(), true, 1.0f, new Polyline(-1000f, -1000f, -1000.0f, 0.0f, 1000f, 0.0f, 1000f, -1000f));
+		Terrain terrain = new Terrain(getOwner(), 1.0f, new Polyline(-1000f, -1000f, -1000.0f, 0.0f, 1000f, 0.0f, 1000f, -1000f));
 		addActor(terrain);
 		
 		// Make finish line

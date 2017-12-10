@@ -32,7 +32,7 @@ public class Seesaw extends GameEntity implements Actor {
 	/**
 	 * Creates a new Seesaw
 	 * @param game
-	 * @param position
+	 * @param position : position of base
 	 * @param leanLeft : if true, seesaw will start with its plank leaning to the left
 	 */
 	public Seesaw(ActorGame game, Vector position, boolean leanLeft) {

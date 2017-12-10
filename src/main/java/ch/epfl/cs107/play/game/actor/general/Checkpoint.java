@@ -28,7 +28,6 @@ public class Checkpoint extends Trigger {
 	/**
 	 * Creates a new Checkpoint, inactive after being triggered
 	 * @param game
-	 * @param fixed
 	 * @param position
 	 * @param radius : radius of spherical hitbox
 	 */
@@ -49,7 +48,6 @@ public class Checkpoint extends Trigger {
 	/**
 	 * Creates a new Checkpoint of radius 1.0f
 	 * @param game
-	 * @param fixed
 	 * @param position
 	 */
 	public Checkpoint(ActorGame game, Vector position) {
@@ -70,6 +68,10 @@ public class Checkpoint extends Trigger {
 		return false;
 	}
 	
+	/**
+	 * Animates checkpoint according to time elapsed
+	 * @param deltaTime
+	 */
 	private void animate(float deltaTime) {
 		timeLeft -= deltaTime;
 		

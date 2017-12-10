@@ -24,6 +24,13 @@ public class Wheel extends GameEntity implements Actor {
 	private static final String WHEEL_SPRITE = "explosive.11.png";
 	private ImageGraphics wheelGraphics;
 	
+	/**
+	 * Creates a new Wheel
+	 * @param game
+	 * @param fixed
+	 * @param position
+	 * @param radius : non-negative
+	 */
 	public Wheel(ActorGame game, boolean fixed, Vector position, float radius) {
 		super(game, fixed, position);
 		
@@ -37,6 +44,12 @@ public class Wheel extends GameEntity implements Actor {
 		makeGraphics();
 	}
 
+	/**
+	 * Creates a new Wheel at origin
+	 * @param game
+	 * @param fixed
+	 * @param radius : non-negative
+	 */
 	public Wheel(ActorGame game, boolean fixed, float radius) {
 		super(game, fixed);
 		
@@ -50,6 +63,9 @@ public class Wheel extends GameEntity implements Actor {
 		makeGraphics();
 	}
 	
+	/**
+	 * Creates physical part
+	 */
 	private void buildPart() {
 		PartBuilder partBuilder = getEntity().createPartBuilder();
 		Circle circle = new Circle(radius);
@@ -58,11 +74,20 @@ public class Wheel extends GameEntity implements Actor {
 		partBuilder.build();
 	}
 	
+	/**
+	 * Creates the wheel graphics
+	 */
 	private void makeGraphics() {
 		wheelGraphics = new ImageGraphics(WHEEL_SPRITE, radius * 2.0f, radius * 2.0f, new Vector(radius, radius));
 		wheelGraphics.setParent(getEntity());
 	}
 	
+	/**
+	 * Attaches wheel to other entity
+	 * @param vehicle
+	 * @param anchor
+	 * @param axis : axis along which wheel can move
+	 */
 	public void attach(Entity vehicle, Vector anchor, Vector axis) {
 		this.vehicle = vehicle;
 		
@@ -78,15 +103,25 @@ public class Wheel extends GameEntity implements Actor {
 		constraint = constraintBuilder.build();
 	}
 	
+	/**
+	 * Sets motor speed of wheel
+	 * @param speed
+	 */
 	public void power(float speed) {
 		constraint.setMotorEnabled(true);
 		constraint.setMotorSpeed(speed);
 	}
 	
+	/**
+	 * Stop motor and rolls freely
+	 */
 	public void relax() {
 		constraint.setMotorEnabled(false);
 	}
 	
+	/**
+	 * Destroys wheel constraint
+	 */
 	public void detach() {
 		constraint.destroy();
 	}
@@ -118,6 +153,9 @@ public class Wheel extends GameEntity implements Actor {
 		return getEntity().getVelocity();
 	}
 	
+	/**
+	 * @return the angluar position of the wheel
+	 */
 	public float getAngularPositon() {
 		return getEntity().getAngularPosition();
 	}
