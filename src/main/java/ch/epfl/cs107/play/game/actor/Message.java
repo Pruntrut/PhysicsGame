@@ -139,6 +139,16 @@ public class Message extends TextGraphics {
 	}
 	
 	/**
+	 * Clears current text and duration
+	 */
+	public void clear() {
+		setText("");
+		duration = 0;
+		timeLeft = 0;
+		shown = false;
+	}
+	
+	/**
 	 * @return true if duration has elapsed since last prepareDrawFade
 	 */
 	public boolean wasShown() {

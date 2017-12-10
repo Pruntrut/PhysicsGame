@@ -39,7 +39,7 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 		
 		// Initialize message
 		message = new Message(0.2f, Color.BLUE, Color.WHITE, 0.02f, true, false, 
-				new Vector(0.5f, 0.5f), 1.0f, 100.0f, getCanvas());
+				new Vector(1.25f, -2.1f), 1.0f, 100.0f, getCanvas());
 		// Build levels
 		levels = createLevelList();
 		// Launch level
@@ -79,6 +79,7 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 			bike.setFreeze(true);
 		} else {
 			// Draw next level message as normal
+			message.setFillColor(Color.BLUE);
 			message.prepareDrawFade("Level " + (currentLevelIndex + 1), INITIAL_MESSAGE_DURATION);
 			initialMessageShown = false;
 		}
@@ -108,7 +109,13 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 		} else if (bike.isHit() && ragdoll == null) {
 			ragdoll = bike.createRagdoll();
 			addActor(ragdoll);
+			
+			message.prepareDrawFade("Press R to restart", Float.MAX_VALUE);
+			message.setFillColor(Color.RED);
+			message.setAnchor(new Vector(0.505f, -2.1f));
 		}
+		
+		message.drawFade(deltaTime);
 		
 	}
 
@@ -119,8 +126,12 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 	 */
 	@Override
 	public void resetLevel() {
+		message.clear();
+		
 		removeActor(bike);
 		removeActor(ragdoll);
+		
+		ragdoll = null;
 		
 		buildBike(currentLevel.getBikeInitialPosition());
 		currentLevel.reset();
