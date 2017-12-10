@@ -33,9 +33,12 @@ public abstract class GameEntity {
 		return game;
 	}
 	
+	/**
+	 * @param other
+	 * @return true if other is the same entity
+	 */
 	public boolean isSameEntity(Entity other) {
 		return entity.equals(other);
 	}
-	
 	
 }
