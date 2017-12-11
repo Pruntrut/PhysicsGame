@@ -1,11 +1,12 @@
 package ch.epfl.cs107.play.game.actor.particles;
 
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
+import ch.epfl.cs107.play.game.actor.ImageParticle;
 import ch.epfl.cs107.play.game.actor.Particle;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
 
-public class VictoryParticle extends Particle {
+public class VictoryParticle extends ImageParticle {
 
 	private static final float LENGTH = 0.3f;
 	
@@ -22,10 +23,10 @@ public class VictoryParticle extends Particle {
 	 */
 	public VictoryParticle(Vector position, Vector velocity, Vector acceleration, float angularPosition,
 			float angularVelocity, float angularAcceleration, float duration) {
-		super(position, velocity, acceleration, angularPosition, angularVelocity, angularAcceleration, false);
+		super(position, velocity, acceleration, angularPosition, angularVelocity, angularAcceleration, false, getGraphicsPath(), 
+				LENGTH, LENGTH, 0.8f, 100f);
 		
 		setDuration(duration);
-		buildGraphics();
 	}
 
 	/**
@@ -33,15 +34,13 @@ public class VictoryParticle extends Particle {
 	 * @param other
 	 */
 	public VictoryParticle(VictoryParticle other) {
-		super(other);
-		this.graphics = other.graphics;
-		
+		super(other);		
 	}
 	
 	/** 
 	 * Creates the graphics (with a random star colour
 	 */
-	private void buildGraphics() {
+	private static String getGraphicsPath() {
 		// Select random star sprite
 		String path = "star.";
 		int index = (int)(Math.random() * 4);
@@ -61,29 +60,11 @@ public class VictoryParticle extends Particle {
 		}
 		path += ".png";
 		
-		// Build graphics
-		graphics = new ImageGraphics(path, LENGTH, LENGTH, Vector.ZERO, 0.5f, 100.0f);
-		graphics.setParent(this);
-		
+		return path;	
 	}
 
 	@Override
-	public void draw(Canvas canvas) {
-		if (!isExpired()) {
-			
-			// If time left is last 25%, start to fade out
-			if (getTimeLeft() < 0.25f * getDuration()) {
-				graphics.setAlpha(getTimeLeft() / (0.25f * getDuration())); 
-			} else {
-				graphics.setAlpha(1.0f);
-			}
-			
-			graphics.draw(canvas);
-		}
-	}
-
-	@Override
-	public Particle copy() {
+	public VictoryParticle copy() {
 		return new VictoryParticle(this);
 	}
 

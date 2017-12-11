@@ -4,14 +4,13 @@ import java.awt.Color;
 
 import ch.epfl.cs107.play.game.actor.Particle;
 import ch.epfl.cs107.play.game.actor.ShapeGraphics;
+import ch.epfl.cs107.play.game.actor.ShapeParticle;
 import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
 
-public class GravityWellParticle extends Particle {
-	
-	private ShapeGraphics graphics;
-	private static final String COLOR = "0xf2dc5d";
+public class GravityWellParticle extends ShapeParticle {
+	private static final Color COLOR = new Color(0xf2dc5d);
 	
 	private float force;
 	private float angle;
@@ -25,19 +24,14 @@ public class GravityWellParticle extends Particle {
 	 * @param length : the distance the particle has to travel
 	 */
 	public GravityWellParticle(Vector position, float force, float angle, float length) {
-		super(position, Vector.ZERO, calculateAcceleration(force, angle), angle, 0.0f, 0.0f, false);
-		
+		super(position, Vector.ZERO, calculateAcceleration(force, angle), angle, 0.0f, 0.0f, false,
+				new Polyline(new Vector(0.0f, 0.0f), new Vector(0.1f, 0.0f)),  COLOR, COLOR, 0.05f, 0.5f, 99.0f);
 		this.force = force;
 		this.angle = angle;
 		this.length = length;
 		
-		// Make graphics
-		Polyline particleShape = new Polyline(new Vector(0.0f, 0.0f), new Vector(0.1f, 0.0f));
-		graphics = new ShapeGraphics(particleShape, Color.decode(COLOR), Color.decode(COLOR), 0.05f, 0.5f, 99.0f);
-		graphics.setParent(this);
-		
-		
-		setDuration(calculateDuration());
+		float duration = calculateDuration();
+		setDuration(duration);
 	}
 
 	/**
@@ -46,7 +40,6 @@ public class GravityWellParticle extends Particle {
 	 */
 	public GravityWellParticle(GravityWellParticle other) {
 		super(other);
-		this.graphics = other.graphics;
 	}
 	
 	/**
@@ -72,13 +65,6 @@ public class GravityWellParticle extends Particle {
 		return (float)Math.sqrt(2.0f*length/acceleration);
 	}
 	
-	@Override
-	public void draw(Canvas canvas) {
-		if (!isExpired()) {
-			graphics.draw(canvas);
-		}
-	}
-
 	@Override
 	public Particle copy() {
 		return new GravityWellParticle(this);

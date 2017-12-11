@@ -26,7 +26,7 @@ public class ShapeParticle extends Particle {
 	 * @param angularPosition : initial angular position
 	 * @param angularVelocity : initial angular velocity
 	 * @param angularAcceleration : initial angular acceleration
-	 * 
+	 * @param permanent
 	 * @param shape
      * @param fillColor : fill color, may be null
      * @param outlineColor : outline color, may be null
@@ -35,9 +35,9 @@ public class ShapeParticle extends Particle {
      * @param depth : render priority, lower-values drawn first
 	 */
 	public ShapeParticle(Vector position, Vector velocity, Vector acceleration, float angularPosition,
-			float angularVelocity, float angularAcceleration, Shape shape, Color fillColor, Color outlineColor,
+			float angularVelocity, float angularAcceleration, boolean permanent, Shape shape, Color fillColor, Color outlineColor,
 			float thickness, float alpha, float depth) {
-		super(position, velocity, acceleration, angularPosition, angularVelocity, angularAcceleration);
+		super(position, velocity, acceleration, angularPosition, angularVelocity, angularAcceleration, permanent);
 		
 		if (shape == null) {
 			throw new NullPointerException("Shape cannot be null");
@@ -72,7 +72,9 @@ public class ShapeParticle extends Particle {
 		this.outlineColor = other.outlineColor;
 		this.thickness = other.thickness;
 		this.alpha = other.alpha;
-		this.depth = other.depth;	}
+		this.depth = other.depth;	
+		
+	}
 
 	@Override
 	public void draw(Canvas canvas) {

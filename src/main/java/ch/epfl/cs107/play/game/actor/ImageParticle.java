@@ -22,6 +22,7 @@ public class ImageParticle extends Particle {
 	 * @param angularPosition : initial angular position
 	 * @param angularVelocity : initial angular velocity
 	 * @param angularAcceleration : initial angular acceleration
+	 * @param permanent
 	 * @param name : image name, non null
 	 * @param width : actual image width, before transformation
      * @param height : actual image height, before transformation
@@ -29,8 +30,8 @@ public class ImageParticle extends Particle {
 	 * @param depth : render priority, lower-values drawn first
 	 */
 	public ImageParticle(Vector position, Vector velocity, Vector acceleration, float angularPosition, float angularVelocity,
-			float angularAcceleration, String name, float width, float height, float alpha, float depth) {
-		super(position, velocity, acceleration, angularPosition, angularVelocity, angularAcceleration);
+			float angularAcceleration, boolean permanent, String name, float width, float height, float alpha, float depth) {
+		super(position, velocity, acceleration, angularPosition, angularVelocity, angularAcceleration, permanent);
 		
 		if (name == null) {
 			throw new NullPointerException("Name cannot be null");
@@ -67,9 +68,20 @@ public class ImageParticle extends Particle {
 	
 	@Override
 	public void draw(Canvas canvas) {
-		Image image = canvas.getImage(name);
-		Transform transform = Transform.I.translated(getPosition()).scaled(width, height).transformed(getTransform());
-		canvas.drawImage(image, transform, alpha, depth);
+		if (!isExpired()) {
+			float alpha = this.alpha;
+			
+			// If time left is last 25%, start to fade out
+			if (getTimeLeft() < 0.25f * getDuration()) {
+				alpha *= getTimeLeft() / (0.25f * getDuration()); 
+			} else {
+				alpha *= 1.0f;
+			}
+			
+			Image image = canvas.getImage(name);
+			Transform transform = Transform.I.scaled(width, height).transformed(getTransform());
+			canvas.drawImage(image, transform, alpha, depth);
+		}
 	}
 
 	@Override
