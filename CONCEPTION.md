@@ -1,4 +1,4 @@
-#Modifications apportées à l'architecture suggérée
+# Modifications apportées à l'architecture suggérée
 
 ## Partie Fournie 
 * Changement de la couleur de fond de la fenêtre;
@@ -8,7 +8,7 @@
 * Ajout d'une classe `Payload`. Elle permet d'ajouter la fonction `isAlive()` à l'entity retournée par `ActorGame.getPayload()`. Particulièrement utile pour les `Trigger` (`Checkpoint`, `Finish`, ...) car permet d'appliquer l'effet du trigger uniquement lorsque `Bike` n'est pas mort (`ìsHit()`)
 * Les graphiques de `Bike` sont séparés entre le cadre et une nouvelle classe `Cyclist` qui permet de séparer par la suite le cycliste du cadre en lui-même.
 
-# Extensions ajoutées à la version de base
+# Extensions du projet de base
 
 ## Structure
 Toutes les extensions font partie du paquetage `ch.epfl.cs017.play.game.actor`, à la racine de ce répertoire se trouvent les extensions les plus générales (classes abstraites, interfaces, ...). Seule exception, dans `ch.epfl.cs017.play.utils` se trouve la classe `Animation`, qui offre certaines fonctions utilitaires d'animation.
@@ -19,3 +19,31 @@ J'ai séparé certaines parties du code dans des sous-paquetages plus spécifiqu
 * `crate` contient les crate et un crate game crée selon la donnée
 * `levels` contient les différents niveaux du bike game
 * `particles` contient les particules et les emitters
+
+## Extensions
+
+### Messages
+J'ai crée une sous classe `Message` de `TextGraphics` afin de simplifier certaines fonctionalités comme le fade d'un message après une certaine durée.
+
+### Niveaux de Jeu
+Pour implémenter cette extension, j'ai crée une interface `GameWithLevels`, qui déclare les méthodes qui sont nécessaires pour changer de niveau. Une sous-classe de `Game` devra implémenter ces méthodes pour avoir des niveaux.
+
+La classe abstraite `Level` définit un niveau de jeu. Elle diffère légèrement de celle dans l'énoncé puisqu'elle possède une liste de checkpoints afin de correctement gérer le respawn du bike (garde les checkpoints dans leurs états activés). Ce sera aux sous-classes de Level d'implémenter les méthodes `createActors` et `createCheckpoints` et non `createAllActors`, afin de séparer les checkpoints d'acteurs normaux.
+
+### Trigger, Finish et Checkpoints
+J'ai crée la classe `Trigger` qui possède un contact listener et un timer. Elle représente un acteur qui est déclenché par un contact et peut avoir une certaine durée d'inactivité (timeout)
+
+`Finish` est une sous-classe de `Trigger` qui représente le drapeau d'arrivée. Elle s'active uniquement lorsqu'elle est touchée par le payload
+
+`Checkpoint`est également une sous-classe de `Trigger` mais plus complexe que `Finish`. Lorsqu'elle est déclenchée, le checkpoint est alors inactif et ne peut plus être utilisé. Lorsque `Checkpoint` est activé, cela déclenche une jolie animation qui utlise les méthodes de `Animation`.
+
+### Particules
+
+
+
+
+
+
+
+
+
