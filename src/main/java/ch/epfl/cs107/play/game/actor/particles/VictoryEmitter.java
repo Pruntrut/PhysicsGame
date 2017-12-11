@@ -58,13 +58,13 @@ public class VictoryEmitter extends Emitter {
 		Vector velocity = new Vector(0.0f, 6.0f).rotated(velocityAngle);
 		Vector acceleration = new Vector(0.0f, -3.0f);
 		
-		// Angular velocity between 1 and -1
-		float angularVelocity = -1.0f + (float)(Math.random() * 2.0);
+		// Angular velocity between 2 and -2
+		float angularVelocity = -2.0f + (float)(Math.random() * 4.0);
 		
 		// Duration between 0.5 and 2.0s
 		float duration = 0.5f + (float)(Math.random() * 3);
 		
-		VictoryParticle particle = new VictoryParticle(position, velocity, acceleration, 0.0f, angularVelocity, 0.0f, duration);
+		VictoryParticle particle = new VictoryParticle(position, velocity, acceleration, (float)Math.PI/4, angularVelocity, 0.0f, duration);
 		addParticle(particle);
 	}
 }

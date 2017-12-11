@@ -1,5 +1,7 @@
 package ch.epfl.cs107.play.game.actor.levels;
 
+import java.awt.Color;
+
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.Level;
 import ch.epfl.cs107.play.game.actor.crate.Crate;
@@ -11,6 +13,8 @@ import ch.epfl.cs107.play.math.Vector;
 
 public class JumpBikeLevel extends Level {
 
+	private static final Color TERRAIN_FILL_COLOR = new Color(0xa0a0a0);
+	private static final Color TERRAIN_OUTLINE_COLOR = new Color(0x777777);
 	private Finish finish;
 	
 	public JumpBikeLevel(ActorGame owner) {
@@ -38,6 +42,8 @@ public class JumpBikeLevel extends Level {
 				60.0f, -1000.0f
 		);
 		Terrain ramp = new Terrain(getOwner(), 1.0f, rampShape);
+		ramp.setFillColor(TERRAIN_FILL_COLOR);
+		ramp.setOutlineColor(TERRAIN_OUTLINE_COLOR);
 		addActor(ramp);
 		
 		// Add the gravity well
@@ -51,6 +57,8 @@ public class JumpBikeLevel extends Level {
 				1000.0f, -24.0f
 		);
 		Terrain platform = new Terrain(getOwner(), 1.0f, platformShape);
+		platform.setFillColor(TERRAIN_FILL_COLOR);
+		platform.setOutlineColor(TERRAIN_OUTLINE_COLOR);
 		addActor(platform);
 		
 		// Add crates

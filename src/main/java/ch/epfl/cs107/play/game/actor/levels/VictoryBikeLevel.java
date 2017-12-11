@@ -14,6 +14,8 @@ import ch.epfl.cs107.play.window.Canvas;
 public class VictoryBikeLevel extends Level {
 
 	private Message message;
+	private static final Color TERRAIN_FILL_COLOR = new Color(0xe6e6ea);
+	private static final Color TERRAIN_OUTLINE_COLOR = new Color(0xf4d35e); 
 	
 	public VictoryBikeLevel(ActorGame owner) {
 		super(owner);
@@ -34,6 +36,8 @@ public class VictoryBikeLevel extends Level {
 				1000.0f, -1000.0f
 		);
 		Terrain terrain = new Terrain(getOwner(), 1.0f, shape);
+		terrain.setFillColor(TERRAIN_FILL_COLOR);
+		terrain.setOutlineColor(TERRAIN_OUTLINE_COLOR);
 		addActor(terrain);
 		
 		// Add victory message
