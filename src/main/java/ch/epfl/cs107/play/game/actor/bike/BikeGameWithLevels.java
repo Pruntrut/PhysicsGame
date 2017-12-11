@@ -133,7 +133,10 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 		message.clear();
 		
 		removeActor(bike);
-		removeActor(ragdoll);
+		
+		if (ragdoll != null) {
+			removeActor(ragdoll);
+		}
 		
 		ragdoll = null;
 		
