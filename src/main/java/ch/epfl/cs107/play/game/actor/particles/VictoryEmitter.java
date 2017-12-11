@@ -1,8 +1,7 @@
-package ch.epfl.cs107.play.game.actor.emitters;
+package ch.epfl.cs107.play.game.actor.particles;
 
 import ch.epfl.cs107.play.game.actor.Emitter;
 import ch.epfl.cs107.play.game.actor.ImageGraphics;
-import ch.epfl.cs107.play.game.actor.particles.VictoryParticle;
 import ch.epfl.cs107.play.math.Polygon;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;

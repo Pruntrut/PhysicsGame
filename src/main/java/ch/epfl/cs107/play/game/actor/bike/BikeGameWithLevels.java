@@ -159,10 +159,10 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 	 */
 	protected List<Level> createLevelList() {
 		return Arrays.asList(
-				new VictoryBikeLevel(this),
 				new BasicBikeLevel(this),
 				new JumpBikeLevel(this),
-				new CheckpointLevel(this)
+				new CheckpointLevel(this),
+				new VictoryBikeLevel(this)
 		);
 	}
 
