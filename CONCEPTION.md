@@ -30,7 +30,7 @@ Pour implémenter cette extension, j'ai crée une interface `GameWithLevels`, qu
 
 La classe abstraite `Level` définit un niveau de jeu. Elle diffère légèrement de celle dans l'énoncé puisqu'elle possède une liste de checkpoints afin de correctement gérer le respawn du bike (garde les checkpoints dans leurs états activés). Ce sera aux sous-classes de Level d'implémenter les méthodes `createActors` et `createCheckpoints` et non `createAllActors`, afin de séparer les checkpoints d'acteurs normaux.
 
-### Trigger, Finish et Checkpoints
+### Trigger, finish et checkpoints
 J'ai crée la classe `Trigger` qui possède un contact listener et un timer. Elle représente un acteur qui est déclenché par un contact et peut avoir une certaine durée d'inactivité (timeout)
 
 `Finish` est une sous-classe de `Trigger` qui représente le drapeau d'arrivée. Elle s'active uniquement lorsqu'elle est touchée par le payload
@@ -38,6 +38,20 @@ J'ai crée la classe `Trigger` qui possède un contact listener et un timer. Ell
 `Checkpoint`est également une sous-classe de `Trigger` mais plus complexe que `Finish`. Lorsqu'elle est déclenchée, le checkpoint est alors inactif et ne peut plus être utilisé. Lorsque `Checkpoint` est activé, cela déclenche une jolie animation qui utlise les méthodes de `Animation`.
 
 ### Particules
+`Particle` est une classe abstraite qui représente une particule avec certaines propriétés phyisques (vitesse, position, etc...) et une certaine durée.
+
+* `ShapeParticle` et `ImageParticle` sont, à l'image de ShapeGraphics et ImageGraphics, des particules avec une certaine représentation graphique. 
+
+
+* `GravityWellParticle` est une `ShapeParticle` qui est générée par `GravityWellEmitter`, sa durée de vie est déterminée par la distance restante à parcourir jusqu'au bord du `GravityWell`.
+
+* `VictoryParticle` est une `ImageParticle` en forme d'étoile, dont la couleur est aléatoire.
+
+`Emitter` est un émetteur de particules. Il gère la création et la destruction de ses particules.
+
+* `GravityWellEmitter` est placé dans un `GravityWell` et génère ses particules. Il s'occupe de générer les `GravityWellParticle` et de calculer la distance restante à parcourir.
+
+* `VictoryEmitter` projette des `VictoryParticles` dans un cône au dessus de lui. Utilié au dernier niveau.
 
 
 
