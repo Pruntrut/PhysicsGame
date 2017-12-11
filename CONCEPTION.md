@@ -59,6 +59,12 @@ J'ai crée la classe `Trigger` qui possède un contact listener et un timer. Ell
 
 #### Animations 
 
+J'ai d'abord animé `Checkpoint` en utilisant les méthodes utilitaires de `Animation`, dont des méthodes "ease-in/ease-out", qui fluidifient les mouvements et les rendent plus naturels.
+
+Ensuite, j'ai animé le `Bike` de deux manières différentes :
+* Tout d'abord, j'ai déplacé le modèle graphique de `Bike` dans `Cyclist`. Cette classe fait pédaler le cycliste en fonction de la position angulaire des roues.
+* Enfin, j'ai fait que le cycliste devienne une entité physique lorsqu'il est touché (`Ragdoll`). `Bike` possède une méthode `createRagdoll` qui retourne une nouvelle entité. Cette entité correspond au modèle graphique `Cyclist` mais est simulée physiquement avec des joints liant les membres.
+    * `CyclistModel` est une classe qui est créée par `Cyclist` et contient les données (positions des membres, taille, etc..) qui sont utiles pour la création de `Ragdoll`. Elle transforme également les `Polyline` en `Polygon` pour qu'ils puissent être utilisés par une `Entity`. 
 
 
 
