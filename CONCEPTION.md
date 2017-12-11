@@ -57,7 +57,7 @@ J'ai crée la classe `Trigger` qui possède un contact listener et un timer. Ell
     * `GravityWellEmitter` est placé dans un `GravityWell` et génère ses particules. Il s'occupe de générer les `GravityWellParticle` et de calculer la distance restante à parcourir.
     * `VictoryEmitter` projette des `VictoryParticles` dans un cône au dessus de lui. Utilié au dernier niveau.
 
-#### Objects physiques
+#### Objets physiquess
 
 * `Pendulum`, un pendule à vitesse et taille variable. Composé d'un point d'attache et d'un poids, reliés par une corde.
 
