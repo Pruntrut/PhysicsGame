@@ -2,6 +2,8 @@ package ch.epfl.cs107.play.game.actor.bike;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.actor.ActorGame;
@@ -12,6 +14,7 @@ import ch.epfl.cs107.play.math.Contact;
 import ch.epfl.cs107.play.math.ContactListener;
 import ch.epfl.cs107.play.math.PartBuilder;
 import ch.epfl.cs107.play.math.Polygon;
+import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.window.Canvas;
@@ -31,6 +34,7 @@ public class Bike extends Payload implements Actor {
 	private boolean hit = false;
 	
 	private Cyclist cyclist;
+	private List<ShapeGraphics> frame = new ArrayList<>();
 	
 	private Polygon hitbox = new Polygon(
 		0.0f, 0.5f,
@@ -100,11 +104,36 @@ public class Bike extends Payload implements Actor {
 	 * Creates the graphics
 	 */
 	private void makeGraphics() {
-		cyclist = new Cyclist(getEntity(), (float)Math.PI/2, Color.WHITE);
+		cyclist = new Cyclist(getEntity(), (float)Math.PI/2, Color.BLACK);
 		hitboxGraphics = new ShapeGraphics(hitbox, Color.RED, null, 0.1f, 0.5f, 0.0f);
 		hitboxGraphics.setParent(getEntity());
 		
-	}	
+		// Draw the bike frame (can tank performance)
+		Polyline front = new Polyline(new Vector(0.4f, 0.8f), new Vector(1.0f, 0.0f));
+		addFramePart(front, Color.BLUE);
+		Polyline lowerFrame = new Polyline(new Vector(-1.0f, 0.0f), new Vector(-0.1f, 0.0f));
+		addFramePart(lowerFrame, Color.BLUE);
+		Polyline upperFrame = new Polyline(new Vector(-0.5f, 0.8f), new Vector(0.4f, 0.8f));
+		addFramePart(upperFrame, Color.BLUE);
+		Polyline leftDiagonal = new Polyline(new Vector(-0.1f, 0.0f), new Vector(0.4f, 0.8f));
+		addFramePart(leftDiagonal, Color.BLUE);
+		Polyline rightDiagonal = new Polyline(new Vector(-1.0f, 0.0f), new Vector(-0.5f, 0.8f));
+		addFramePart(rightDiagonal, Color.BLUE);
+		Polyline saddle = new Polyline(new Vector(-0.7f, 0.85f), new Vector(-0.4f, 0.85f));
+		addFramePart(saddle, Color.BLACK);
+		Polyline handlebars = new Polyline(new Vector(0.4f, 0.8f), new Vector(0.7f, 1.0f));
+		addFramePart(handlebars, Color.BLACK);
+	
+	}
+	/**
+	 * Adds a new ShapeGraphics to the frame 
+	 * @param shape : shape of graphics
+	 */
+	private void addFramePart(Polyline shape, Color color) {
+		ShapeGraphics sg = new ShapeGraphics(shape, color, color, 0.10f, 1.0f, 99.0f);
+		sg.setParent(getEntity());
+		frame.add(sg);
+	}
 	
 	/**
 	 * Creates a contact lsitener which tells bike if it has hit an entity other than its wheels
@@ -134,7 +163,6 @@ public class Bike extends Payload implements Actor {
 	public void update(float deltaTime) {		
 		if (!hit && !frozen) {			
 			updateControls();
-			cyclist.setAngle(leftWheel.getAngularPositon());
 		}
 	}
 	
@@ -151,16 +179,18 @@ public class Bike extends Payload implements Actor {
 		
 		// If spacebar pressed, invert direction of bike
 		if (keyboard.get(KeyEvent.VK_SPACE).isPressed()) {
+			float ajust = lookingLeft ? 1.0f : -1.0f;
+			for (ShapeGraphics sg : frame) {
+				sg.setRelativeTransform(Transform.I.scaled(ajust*1.0f, 1.0f));
+			}
+			
 			lookingLeft = !lookingLeft;
 		}
 		
 		// If down arrow is pressed, turn motors on, immobilize them (speed = 0)
 		if (keyboard.get(KeyEvent.VK_DOWN).isDown()) {
-			if (lookingLeft) {
-				rightWheel.power(0.0f);
-			} else {
-				leftWheel.power(0.0f);
-			}	
+			rightWheel.power(0.0f);
+			leftWheel.power(0.0f);
 		}
 		
 		// If up arrow is pressed, set driving wheel's speed to the max speed
@@ -174,6 +204,8 @@ public class Bike extends Payload implements Actor {
 				leftWheel.relax();
 				rightWheel.relax();
 			}
+			
+			cyclist.setAngle(leftWheel.getAngularPositon());
 		}
 		
 		// If left arrow is pressed, apply angular force to entity (lean left)
@@ -192,6 +224,9 @@ public class Bike extends Payload implements Actor {
 		leftWheel.draw(canvas);
 		rightWheel.draw(canvas);
 		
+		for (ShapeGraphics sg : frame) {
+			sg.draw(canvas);
+		}
 		
 		if (!hit) {
 			cyclist.setDirection(lookingLeft);

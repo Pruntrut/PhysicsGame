@@ -38,25 +38,25 @@ public class Cyclist extends Node implements Graphics {
 		this.color = color;
 		
 		// Draw head
-		head = new ShapeGraphics(getHeadShape(), color, color, THICKNESS);
+		head = new ShapeGraphics(getHeadShape(), color, color, THICKNESS, 1.0f, 100.0f);
 		head.setParent(parent);
 		// Draw arm
-		arm = new ShapeGraphics(getArmShape(), color, color, THICKNESS);
+		arm = new ShapeGraphics(getArmShape(), color, color, THICKNESS, 1.0f, 100.0f);
 		arm.setParent(parent);
 		// Draw back
-		back = new ShapeGraphics(getBackShape(), color, color, THICKNESS);
+		back = new ShapeGraphics(getBackShape(), color, color, THICKNESS, 1.0f, 100.0f);
 		back.setParent(parent);
 		// Draw left thigh
-		leftThigh = new ShapeGraphics(getLeftThighShape(), null, color, THICKNESS);
+		leftThigh = new ShapeGraphics(getLeftThighShape(), null, color, THICKNESS, 1.0f, 100.0f);
 		leftThigh.setParent(parent);
 		// Draw left calf
-		leftCalf = new ShapeGraphics(getLeftCalfShape(), null, color, THICKNESS);
+		leftCalf = new ShapeGraphics(getLeftCalfShape(), null, color, THICKNESS, 1.0f, 100.0f);
 		leftCalf.setParent(parent);
 		// Draw right thigh
-		rightThigh = new ShapeGraphics(getRightThighShape(), null, color, THICKNESS);
+		rightThigh = new ShapeGraphics(getRightThighShape(), null, color, THICKNESS, 1.0f, 98.0f);
 		rightThigh.setParent(parent);
 		// Draw right calf
-		rightCalf = new ShapeGraphics(getRightCalfShape(), null, color, THICKNESS);
+		rightCalf = new ShapeGraphics(getRightCalfShape(), null, color, THICKNESS, 1.0f, 98.0f);
 		rightCalf.setParent(parent);
 	}
 	

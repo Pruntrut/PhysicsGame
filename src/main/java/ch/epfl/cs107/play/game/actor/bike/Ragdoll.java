@@ -59,9 +59,8 @@ public class Ragdoll extends GameEntity implements Actor {
 		weldBuilder.setInternalCollision(false);
 		weldBuilder.build();
 		
-		// Attach arm to shoulder
-		createRevoluteContraint(arm, back, model.shoulderLocation, false);
-		// Attach other joints
+		// Attach limbs
+		createRevoluteContraint(arm, back, model.shoulderLocation);
 		createRevoluteContraint(leftThigh, back, model.hipLocation);
 		createRevoluteContraint(rightThigh, back, model.hipLocation);
 		createRevoluteContraint(leftCalf, leftThigh, model.leftKneeLocation);
@@ -92,7 +91,7 @@ public class Ragdoll extends GameEntity implements Actor {
 		builder.setFirstAnchor(positon);
 		builder.setSecondEntity(second);
 		builder.setSecondAnchor(positon);
-		builder.setInternalCollision(true);
+		builder.setInternalCollision(false);
 		builder.build();
 	}
 	

@@ -146,6 +146,7 @@ public class BikeGameWithLevels extends ActorGame implements GameWithLevels {
 	
 	/**
 	 * Builds the bike entity, sets it as payload, actor, etc...
+	 * @param position : initial position of bike
 	 */
 	private void buildBike(Vector position) {
 		bike = new Bike(this, false, position.add(0.0f, 0.5f));

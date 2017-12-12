@@ -1,16 +1,12 @@
 package ch.epfl.cs107.play.game.actor.particles;
 
-import ch.epfl.cs107.play.game.actor.ImageGraphics;
 import ch.epfl.cs107.play.game.actor.ImageParticle;
-import ch.epfl.cs107.play.game.actor.Particle;
 import ch.epfl.cs107.play.math.Vector;
-import ch.epfl.cs107.play.window.Canvas;
 
 public class VictoryParticle extends ImageParticle {
 
 	private static final float LENGTH = 0.3f;
 	
-	private ImageGraphics graphics;
 	
 	/**
 	 * Creates a new VictoryParticle (star shaped) with a random color and non permanent

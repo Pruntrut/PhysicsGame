@@ -3,14 +3,12 @@ package ch.epfl.cs107.play.game.actor.particles;
 import java.awt.Color;
 
 import ch.epfl.cs107.play.game.actor.Particle;
-import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.game.actor.ShapeParticle;
 import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Vector;
-import ch.epfl.cs107.play.window.Canvas;
 
 public class GravityWellParticle extends ShapeParticle {
-	private static final Color COLOR = new Color(0xf2dc5d);
+	private static final Color COLOR = new Color(0xff3a20);
 	
 	private float force;
 	private float angle;

@@ -1,12 +1,17 @@
 package ch.epfl.cs107.play.game.actor.general;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
 import ch.epfl.cs107.play.game.actor.Actor;
 import ch.epfl.cs107.play.game.actor.ActorGame;
 import ch.epfl.cs107.play.game.actor.GameEntity;
-import ch.epfl.cs107.play.game.actor.ImageGraphics;
+import ch.epfl.cs107.play.game.actor.ShapeGraphics;
 import ch.epfl.cs107.play.math.Circle;
 import ch.epfl.cs107.play.math.Entity;
 import ch.epfl.cs107.play.math.PartBuilder;
+import ch.epfl.cs107.play.math.Polyline;
 import ch.epfl.cs107.play.math.Transform;
 import ch.epfl.cs107.play.math.Vector;
 import ch.epfl.cs107.play.math.WheelConstraint;
@@ -21,8 +26,8 @@ public class Wheel extends GameEntity implements Actor {
 	private WheelConstraint constraint;		// The constraint attaching the wheel to its vehicle
 	private Entity vehicle;					// The vehicle it is attached to 
 	
-	private static final String WHEEL_SPRITE = "explosive.11.png";
-	private ImageGraphics wheelGraphics;
+	private ShapeGraphics tire;
+	private List<ShapeGraphics> spokes = new ArrayList<>();
 	
 	/**
 	 * Creates a new Wheel
@@ -78,8 +83,19 @@ public class Wheel extends GameEntity implements Actor {
 	 * Creates the wheel graphics
 	 */
 	private void makeGraphics() {
-		wheelGraphics = new ImageGraphics(WHEEL_SPRITE, radius * 2.0f, radius * 2.0f, new Vector(radius, radius));
-		wheelGraphics.setParent(getEntity());
+		tire = new ShapeGraphics(new Circle(radius), null, new Color(0x0f0d0e), 0.1f);
+		tire.setParent(getEntity());
+		
+		int numberOfSpokes = 10;
+		
+		for (int i = 0; i < numberOfSpokes; i++) {
+			float angle = (float) (2*Math.PI/numberOfSpokes * i);
+			
+			Polyline spoke = new Polyline(new Vector(-radius, 0.0f).rotated(angle), new Vector(radius, 0.0f).rotated(angle));
+			ShapeGraphics spokeGraphics = new ShapeGraphics(spoke, null, Color.BLACK, 0.025f);
+			spokeGraphics.setParent(getEntity());
+			spokes.add(spokeGraphics);
+		}
 	}
 	
 	/**
@@ -154,7 +170,7 @@ public class Wheel extends GameEntity implements Actor {
 	}
 	
 	/**
-	 * @return the angluar position of the wheel
+	 * @return the angular position of the wheel
 	 */
 	public float getAngularPositon() {
 		return getEntity().getAngularPosition();
@@ -162,7 +178,11 @@ public class Wheel extends GameEntity implements Actor {
 
 	@Override
 	public void draw(Canvas canvas) {
-		wheelGraphics.draw(canvas);
+		tire.draw(canvas);
+		
+		for (ShapeGraphics spoke : spokes) {
+			spoke.draw(canvas);
+		}
 	}
 
 }

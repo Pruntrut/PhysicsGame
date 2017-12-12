@@ -42,7 +42,7 @@ public class Checkpoint extends Trigger {
 		poleGraphics = new ImageGraphics(POLE_SPRITE, 0.32f * radius, radius, new Vector(0.15f, 4.0f), 1.0f, -101.0f);
 		poleGraphics.setParent(getEntity());
 		
-		signGraphics = new ShapeGraphics(new Circle(radius/2, new Vector(0.0f, 0.25f)), Color.decode("0x2b9daf"), Color.LIGHT_GRAY, 0.1f, 1.0f, -102.0f);
+		signGraphics = new ShapeGraphics(new Circle(radius/2, new Vector(0.0f, 0.25f)), new Color(0x2b9daf), new Color(0xbababa), 0.1f, 1.0f, -102.0f);
 		signGraphics.setParent(getEntity());
 	}
 
