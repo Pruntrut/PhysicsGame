@@ -3,7 +3,7 @@
 ## Modifications apportées à l'architecture suggérée
 
 ### Partie Fournie 
-* Changement de la couleur de fond de la fenêtre;
+* Changement de la couleur de fond de la fenêtre
 
 ### Partie Suggérée
 * `GameEntity` possède une méthode `isSameEntity(Entity entity)` qui compare l'entité passée en paramètre à l'entité de `GameEntity`. Cette méthode permet de comparer des `Entity` dans les ContactListener sans exposer un `getEntity()` dans `GameEntity`.
