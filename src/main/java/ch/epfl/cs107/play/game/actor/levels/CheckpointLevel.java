@@ -24,14 +24,14 @@ public class CheckpointLevel extends Level {
 		addActor(terrain);
 		
 		// Make finish line
-		finish = new Finish(getOwner(), true, new Vector(105f, 1.0f));
+		finish = new Finish(getOwner(), true, new Vector(55f, 1.0f));
 		addActor(finish);
 		
 	}
 	
 	@Override
 	protected void createCheckpoints() {
-		for (int i = 1; i < 50; i++) {
+		for (int i = 1; i < 25; i++) {
 			Checkpoint checkpoint = new Checkpoint(getOwner(), new Vector(2f * i, 1.0f));
 			addCheckpoint(checkpoint);
 		}

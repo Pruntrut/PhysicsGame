@@ -26,8 +26,11 @@ public class GravityWell extends GameEntity implements Actor {
 	private float forceStrength = 30.0f;
 	
 	private ShapeGraphics wellGraphics;
-	private static final String BACKGROUND_COLOR = "0xb1b9ba";
-	private static final String BORDER_COLOR = "0x717677";
+	private ShapeGraphics arrowGraphicsLeft;
+	private ShapeGraphics arrowGraphicsRight;
+	private static final Color ARROW_COLOR = new Color(0xff3a20);
+	private static final Color BACKGROUND_COLOR = new Color(0xb1b9ba);
+	private static final Color BORDER_COLOR = new Color(0x717677);
 	private static Polyline border;
 	private float height;
 	private float width;
@@ -66,8 +69,17 @@ public class GravityWell extends GameEntity implements Actor {
 		partBuilder.build();
 		
 		// Create graphics
-		wellGraphics = new ShapeGraphics(shape, Color.decode(BACKGROUND_COLOR), null, 0.0f, 0.3f, 1000f);
+		wellGraphics = new ShapeGraphics(shape, BACKGROUND_COLOR, null, 0.0f, 0.3f, 1000f);
 		wellGraphics.setParent(getEntity());
+		
+		Polyline arrowLeft = new Polyline(new Vector(0.0f, 0.25f*height), new Vector(0.2f*width, 0.0f));
+		arrowGraphicsLeft = new ShapeGraphics(arrowLeft, ARROW_COLOR, ARROW_COLOR, 0.3f);
+		arrowGraphicsLeft.setRelativeTransform(Transform.I.translated(-0.1f*width, 0.0f));
+		arrowGraphicsLeft.setParent(getEntity());
+		Polyline arrowRight = new Polyline(new Vector(0.0f, -0.25f*height), new Vector(0.2f*width, 0.0f));
+		arrowGraphicsRight = new ShapeGraphics(arrowRight, ARROW_COLOR, ARROW_COLOR, 0.3f);
+		arrowGraphicsRight.setRelativeTransform(Transform.I.translated(-0.1f*width, 0.0f));
+		arrowGraphicsRight.setParent(getEntity());
 		
 		// Create border
 		border = new Polyline(0.0f, 0.0f, width, 0.0f);
@@ -108,7 +120,7 @@ public class GravityWell extends GameEntity implements Actor {
 	
 	@Override
 	public void update(float deltaTime) {
-		if (targetEntity != null) {
+		if (getOwner().getPayload().isSameEntity(targetEntity)) {
 			targetEntity.applyForce(new Vector(forceStrength, 0.0f).rotated(angle), targetEntity.getPosition());
 		}
 		
@@ -128,9 +140,11 @@ public class GravityWell extends GameEntity implements Actor {
 	@Override
 	public void draw(Canvas canvas) {
 		wellGraphics.draw(canvas);
+		arrowGraphicsLeft.draw(canvas);
+		arrowGraphicsRight.draw(canvas);
 		emitter.draw(canvas);
 		
-		Color color = Color.decode(BORDER_COLOR);
+		Color color = BORDER_COLOR;
 		
 		canvas.drawShape(border, getTransform().translated(new Vector(-width/2, -height/2).rotated(angle)), color, color, 0.1f, 1.0f, 1000f);
 		canvas.drawShape(border, getTransform().translated(new Vector(-width/2, height/2).rotated(angle)), color, color, 0.1f, 1.0f, 1000f);

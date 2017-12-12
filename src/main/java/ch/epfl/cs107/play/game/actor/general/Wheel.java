@@ -21,7 +21,7 @@ import ch.epfl.cs107.play.window.Canvas;
 public class Wheel extends GameEntity implements Actor {
 
 	private float radius;
-	private static final float FRICTION = 1f; 
+	private static final float FRICTION = 1.5f; 
 	
 	private WheelConstraint constraint;		// The constraint attaching the wheel to its vehicle
 	private Entity vehicle;					// The vehicle it is attached to 

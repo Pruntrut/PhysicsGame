@@ -62,7 +62,7 @@ public class JumpBikeLevel extends Level {
 		addActor(platform);
 		
 		// Add crates
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 5; i++) {
 			Crate crate = new Crate(getOwner(), false, new Vector(78.0f, -24.0f + i * 1.0f), 1.0f);
 			addActor(crate);
 		}

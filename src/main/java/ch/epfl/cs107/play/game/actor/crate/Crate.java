@@ -61,6 +61,7 @@ public class Crate extends GameEntity implements Actor {
 				new Vector(length, 0.0f)
 		);
 		partBuilder.setShape(polygon);
+		partBuilder.setFriction(0.85f);
 		partBuilder.build();
 	}
 	

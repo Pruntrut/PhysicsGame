@@ -16,9 +16,9 @@ public class Seesaw extends GameEntity implements Actor {
 	
 	private static final float PLANK_HEIGHT = 0.3f;
 	private static final float PLANK_WIDTH = 5.0f;
-	private static final float FRICTION = 0.85f;
+	private static final float FRICTION = 1.5f;
 	
-	private static final float BASE_WIDTH = 1.0f;
+	private static final float BASE_WIDTH = 2.5f;
 	private static final float BASE_HEIGHT = 1.0f;
 	
 	private static final String PLANK_SPRITE = "wood.3.png";
@@ -76,7 +76,7 @@ public class Seesaw extends GameEntity implements Actor {
 		revoluteConstraintBuilder.setFirstAnchor(new Vector(BASE_WIDTH/2, BASE_HEIGHT));
 		revoluteConstraintBuilder.setSecondEntity(plank);
 		revoluteConstraintBuilder.setSecondAnchor(new Vector(PLANK_WIDTH/2, 0.0f));
-		revoluteConstraintBuilder.setInternalCollision(false);
+		revoluteConstraintBuilder.setInternalCollision(true);
 		revoluteConstraintBuilder.build();
 	}
 
