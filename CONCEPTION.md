@@ -38,6 +38,7 @@ Les niveaux implémentés sont les suivants:
 * `BasicBikeLevel` : Un simple niveau pourvu d'un pendule, d'un checkpoint et d'une bascule
 * `JumpBikeLevel` : Un niveau de saut en longueur avec un puits de gravité à la fin de la rampe et une barrière de boîtes à la fin du saut
 * `CheckpointLevel` : Simple démo de l'animation des checkpoints
+* `ChallengeLevel` : Un niveau un peu plus difficile, qui combine tous les éléments vus précédemment,
 * `VictoryLevel` : Le dernier niveau. Il bloque le cycliste et affiche le message de victoire.e
 
 #### Trigger, finish et checkpoints

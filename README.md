@@ -40,15 +40,22 @@ Once at the checkpoint, simply go forward until the finish line, passing over th
 ### Level 2 (Jump level)
 
 Slide down the slope into the booster, then as you are in midair,
-angle your bike back so that only the wheels hit the crates
-It might take a few tries to get it right
+angle your bike back so that only the wheels hit the crates.
+It might take a few tries to get it right.
 
 ### Level 3 (Checkpoint level)
 
 This level was mainly build a showcase of the checkpoint animation =P
-Simply go right until you hit the finish line
+Simply go right until you hit the finish line.
 
-### Level 4 (Victory level)
+### Level 4
+
+This is a slightly more challenging level. To get a proper boost, enter the gravity well very slowly.
+At the seesaws, take your time, let the seesaw balance before accelerating. You will then hit a checkpoint.
+There are two ways to pass the pendulum: over or under. Wait until the right moment before attempting the jump.
+
+
+### Level 5 (Victory level)
 
 Congratulations, you have reached the final level !
 Admire the VictoryParticles(TM) for as long as you wish then 
