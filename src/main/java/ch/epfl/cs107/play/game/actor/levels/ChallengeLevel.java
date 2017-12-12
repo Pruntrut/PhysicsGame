@@ -62,8 +62,8 @@ public class ChallengeLevel extends Level {
 		addActor(new Seesaw(getOwner(), new Vector(32.5f, 4.0f), true));
 		addActor(new Seesaw(getOwner(), new Vector(37.7f, 4.0f), true));
 		// Add pendulum
-		Pendulum pendulum = new Pendulum(getOwner(), new Vector(70.0f, 12.5f), 1.25f, 5.0f);
-		pendulum.setVelocity(new Vector(6.0f, 0.0f));
+		Pendulum pendulum = new Pendulum(getOwner(), new Vector(70.5f, 12.5f), 1.25f, 5.5f);
+		pendulum.setVelocity(new Vector(6.5f, 0.0f));
 		addActor(pendulum);
 		// Add finish line
 		finish = new Finish(getOwner(), true, new Vector(85.0f, 6.0f));
